@@ -29,3 +29,6 @@
 - sidebar : Life-Calendar의 좌측에 표시되며 여러기능을 사용자가 원하는대로 설정하는 기능을 나타낸다.
 - main : Life-Calendar의 중앙에 표시되며 1년 365개의 타일을 배치하고(4행 3열) 감정을 표시하는 기능을 나타낸다.
 - footer : Life-Calendar의 하단에 표시되며 연락처, 이메일 정보, 소셜 미디어 링크 같은 기타 정보를 나타낸다.
+
+## 참고 사이트 
+- <a href="https://brunch.co.kr/@830bfa34e0894d6/25">header 영역 디자인 참고사이트</a>

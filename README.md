@@ -34,5 +34,5 @@
 - <a href="https://brunch.co.kr/@830bfa34e0894d6/25">header 영역 디자인 참고사이트</a>
 
 ## html color hex code 사이트
-- "https://www.smartprix.com/bytes/a-complete-guide-to-html-colour-and-html-hex-codes 색깔 code 사이트
+- https://www.smartprix.com/bytes/a-complete-guide-to-html-colour-and-html-hex-codes 색깔 code 사이트
 

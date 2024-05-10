@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Calendar</title>
+    <link rel="icon" href="mew.png"> <!-- 로고 이미지 파일의 경로를 설정해주세요 -->
+    <style>
+        /* CSS 코드 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* 좌우 비율 조정 */
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .month {
+            margin-bottom: 20px;
+        }
+
+        .month-name {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+        }
+
+        .day {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer; /* 커서를 변경하여 클릭 가능하게 만듭니다 */
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+
+        .legend {
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar {
+            border-right: 1px solid #ccc;
+            padding-right: 20px;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        .sidebar button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>사이드 바</h2>
+            <button id="resetBtn">초기화</button>
+            <button id="emotionsBtn">감정 달력</button>
+            <button id="memoBtn">메모장</button>
+        </div>
+        <div class="calendar"></div>
+    </div>
+
+    <script>
+        // JavaScript 코드
+ document.addEventListener("DOMContentLoaded", function() {
+    const calendarDiv = document.querySelector('.calendar');
+
+    // Create months of the year
+    const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+    months.forEach(month => {
+        const monthElement = document.createElement('div');
+        monthElement.classList.add('month');
+        calendarDiv.appendChild(monthElement);
+
+        const monthName = document.createElement('div');
+        monthName.classList.add('month-name');
+        monthName.textContent = month;
+        monthElement.appendChild(monthName);
+
+        const daysElement = document.createElement('div');
+        daysElement.classList.add('days');
+        monthElement.appendChild(daysElement);
+
+        // Get number of days in the month
+        const monthIndex = months.indexOf(month);
+        const daysInMonth = new Date(2022, monthIndex + 1, 0).getDate();
+
+        // Create days of the month
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('day');
+            dayElement.textContent = i;
+            daysElement.appendChild(dayElement);
+
+            // Add click event listener to each day
+            dayElement.addEventListener('click', function() {
+                if (emotionsMode) {
+                    // Prompt user to choose a color
+                    const color = prompt("오늘의 기분을 대표 색깔로 표현해보세요 (예시: red, blue, green):");
+
+                    // Prompt user to choose brightness
+                    const brightness = prompt("이날의 세부 기분을 표현해보세요 (e.g., 매우 좋았다, 좋았다, 평범해, 힘들어, 침울해):");
+
+                    // Change background color of the clicked day
+                    dayElement.style.backgroundColor = color;
+
+                    // Display mood based on brightness
+                    alert("이날은 " + brightness + " 하셨군요!");
+                } else if (memoMode) {
+                    const memo = prompt("메모를 입력하세요:");
+                    // Display memo on the clicked day
+                    dayElement.dataset.memo = memo;
+                }
+            });
+        }
+    });
+
+    // Reset button functionality
+    const resetBtn = document.getElementById('resetBtn');
+    resetBtn.addEventListener('click', function() {
+        const allDays = document.querySelectorAll('.day');
+        allDays.forEach(day => {
+            day.style.backgroundColor = '';
+            delete day.dataset.memo;
+        });
+    });
+
+    let emotionsMode = false;
+    const emotionsBtn = document.getElementById('emotionsBtn');
+    emotionsBtn.addEventListener('click', function() {
+        emotionsMode = !emotionsMode;
+        if (emotionsMode) {
+            emotionsBtn.textContent = "기본 달력";
+            memoBtn.disabled = true;
+        } else {
+            emotionsBtn.textContent = "감정 달력";
+            memoBtn.disabled = false;
+        }
+    });
+
+    let memoMode = false;
+    const memoBtn = document.getElementById('memoBtn');
+    memoBtn.addEventListener('click', function() {
+        memoMode = !memoMode;
+        if (memoMode) {
+            memoBtn.textContent = "취소";
+            emotionsBtn.disabled = true;
+        } else {
+            memoBtn.textContent = "메모장";
+            emotionsBtn.disabled = false;
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

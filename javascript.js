@@ -56,8 +56,29 @@ function generateDaysForMonth(year) {
     });
 }
 
-// 올해 년도 generateDaysForMonth() 함수 실행
+//선택한 날짜를 표시하는 효과 추가
+function appendSelected() {
+    let selectedDay = null; // 초기에는 선택한 날짜가 없음
+
+    // 각 날짜 요소에 이벤트 리스너 추가
+    const days = document.querySelectorAll('.day');
+    days.forEach(day => {
+        day.addEventListener('click', () => {
+            // 선택한 날짜를 업데이트하고 이전 선택을 취소
+            if (selectedDay) {
+                selectedDay.classList.remove('selected');
+            }
+            selectedDay = day;
+            selectedDay.classList.add('selected');
+        });
+    });
+}
+
+// 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
+
     generateDaysForMonth(currentYear);
+    appendSelected()
 });
+

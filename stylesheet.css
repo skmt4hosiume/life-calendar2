@@ -13,14 +13,14 @@ header {
 
 sidebar { 
     width: 20%;
-    height: 1800px;
+    height: 2400px;
     float: left;
     margin-bottom: 30px;
 }
 
 main {
     width: 75%;
-    height: 1800px;
+    height: 2400px;
     float: right;
 }
 
@@ -40,6 +40,7 @@ footer {
 }
 
 .month {
+    margin: 30px;
     border: 1px solid black;
     display: grid;
 }
@@ -62,4 +63,16 @@ footer {
     border: 1px solid black;
     text-align: center;
     padding: 10px;
+}
+
+.day:hover {
+    background-color: rgb(195, 195, 195);
+}
+
+.day:active {
+    background-color: aliceblue;
+}
+
+.selected {
+    background-color: skyblue;
 }

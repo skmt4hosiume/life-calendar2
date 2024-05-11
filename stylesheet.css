@@ -24,16 +24,19 @@ main {
     float: right;
 }
 
-.calendar {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
 
 footer {
     width: 100%;
     height: 100px;
     clear: both;
+}
+
+
+
+.calendar {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .month {

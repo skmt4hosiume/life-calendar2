@@ -83,7 +83,16 @@ function appendSelected() {
 document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
 
-    generateDaysForMonth(currentYear);
+    generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
     appendSelected()
+    
+   // 언어가 변경될 때마다 새로운 언어로 달력을 생성
+    const languageSelect = document.getElementById('languageSelect');
+    languageSelect.addEventListener('change', (event) => {
+        const language = event.target.value;
+        document.querySelectorAll('.month').forEach(month => month.innerHTML = '');
+        generateDaysForMonth(currentYear, language);
+        appendSelected(); // 다시 이벤트 리스너를 추가하여 선택한 날짜 표시를 유지
+    });
 });
 

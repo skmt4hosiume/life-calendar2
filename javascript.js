@@ -13,7 +13,9 @@ function isLeapYear(year) {
 }
 
 // 각 월마다 날짜 생성 
-function generateDaysForMonth(year) {
+function generateDaysForMonth(year, language) {
+    const monthNames = {
+    }
     const months = [
         { month: 'January',   days: 31 },
         { month: 'February',  days: isLeapYear(year) ? 29 : 28 },

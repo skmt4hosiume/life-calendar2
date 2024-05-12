@@ -70,7 +70,7 @@ footer {
 }
 
 .day:active {
-    background-color: aliceblue;
+    background-color: rgb(233, 245, 255);
 }
 
 .selected {

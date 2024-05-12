@@ -20,18 +20,18 @@ function generateDaysForMonth(year, language) {
         'jp': ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
     };
     const months = [
-        { month: 'January',   days: 31 },
-        { month: 'February',  days: isLeapYear(year) ? 29 : 28 },
-        { month: 'March',     days: 31 },
-        { month: 'April',     days: 30 },
-        { month: 'May',       days: 31 },
-        { month: 'June',      days: 30 },
-        { month: 'July',      days: 31 },
-        { month: 'August',    days: 31 },
-        { month: 'September', days: 30 },
-        { month: 'October',   days: 31 },
-        { month: 'November',  days: 30 },
-        { month: 'December',  days: 31 }
+        { month: monthNames[language][0], days: 31 },
+        { month: monthNames[language][1], days: isLeapYear(year) ? 29 : 28 },
+        { month: monthNames[language][2], days: 31 },
+        { month: monthNames[language][3], days: 30 },
+        { month: monthNames[language][4], days: 31 },
+        { month: monthNames[language][5], days: 30 },
+        { month: monthNames[language][6], days: 31 },
+        { month: monthNames[language][7], days: 31 },
+        { month: monthNames[language][8], days: 30 },
+        { month: monthNames[language][9], days: 31 },
+        { month: monthNames[language][10], days: 30 },
+        { month: monthNames[language][11], days: 31 }
     ];
 
     months.forEach((m, index) => {

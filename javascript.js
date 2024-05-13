@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     updateTime();
     setInterval(updateTime, 1000);
-    appendSelected()
     
     const currentYear = new Date().getFullYear();
     generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
-
+    
+    appendSelected()
     
    // 언어가 변경될 때마다 새로운 언어로 달력을 생성
     const languageSelect = document.getElementById('languageSelect');

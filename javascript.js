@@ -122,19 +122,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTime();
     setInterval(updateTime, 1000);
-    
-    const currentYear = new Date().getFullYear();
-    generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
-    
+    generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
     appendSelected()
-    
-   // 언어가 변경될 때마다 새로운 언어로 달력을 생성
-    const languageSelect = document.getElementById('languageSelect');
-    languageSelect.addEventListener('change', (event) => {
-        const language = event.target.value;
-        document.querySelectorAll('.month').forEach(month => month.innerHTML = '');
-        generateDaysForMonth(currentYear, language);
-        appendSelected(); // 다시 이벤트 리스너를 추가하여 선택한 날짜 표시를 유지
-    });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedColor = document.getElementById('selected-color');
+    const colorPicker = document.getElementById('color-picker');
+
+    // 선택한 색상을 selected-color에 반영하는 함수
+    function setSelectedColor(color) {
+        selectedColor.style.backgroundColor = color;
+    }
+
+    // 선택한 색상을 보여주는 함수
+    function showSelectedColor() {
+        selectedColor.style.display = 'block';
+    }
+
+    // color-picker를 표시하거나 숨기는 함수
+    function toggleColorPicker() {
+        if (colorPicker.style.display === 'block') {
+            colorPicker.style.display = 'none';
+        } else {
+            colorPicker.style.display = 'block';
+        }
+    }
+
+    // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
+    selectedColor.addEventListener('click', () => {
+        toggleColorPicker();
+    });
+
+    // 각 색상 옵션을 클릭했을 때의 동작
+    const colorOptions = document.querySelectorAll('.color-option');
+    colorOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const color = option.id;
+            setSelectedColor(color);
+            toggleColorPicker();
+            colorEffect(color)
+        });
+    });
+
+    // 페이지 로드 후 color-picker를 숨김
+    colorPicker.style.display = 'none';
+    selectedColor.style.display = 'none';
+})

@@ -66,10 +66,11 @@ footer {
 
 .month-name {
     width: 100%;
+    height: 120px;
     font-weight: bold;
-    padding: 5px;
     font-size: 80px;
     text-align: center;
+    border-bottom: 1px solid black;
 }
 
 .days-container {

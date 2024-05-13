@@ -1,3 +1,9 @@
+body {
+    max-width: 4800px;
+    min-width: 4800px;
+    margin: auto;
+}
+
 header, sidebar, main, footer {
     box-sizing: border-box;
     font-size: 30px;
@@ -13,14 +19,14 @@ header {
 
 sidebar { 
     width: 20%;
-    height: 2400px;
+    height: 3600px;
     float: left;
     margin-bottom: 30px;
 }
 
 main {
     width: 75%;
-    height: 2400px;
+    height: 3600px;
     float: right;
 }
 

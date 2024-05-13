@@ -32,6 +32,13 @@ header {
     line-height: 1px;
 }
 
+.home-about {
+    font-size: 100px;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    line-height: 1px;
+}
 
 sidebar { 
     width: 20%;

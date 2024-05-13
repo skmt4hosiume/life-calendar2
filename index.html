@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="javascript.js"></script>
 </head>
+
 <body>
     <header>
-        <img src="image/로고.png" alt = "로고 이미지" id="logo">
-        <p style="text-align: right;">
+        <img src="image/로고.png" alt="로고 이미지" id="logo">
+        <p class="login-signup">
             <a href="#">로그인</a>
-            <a href="#">회원가입</a>     
-            </p>
-        <p style="text-align: center;">
-            <a href="#">홈</a>&nbsp;&nbsp;&nbsp;
+            <a href="#">회원가입</a>
+        </p>
+        <p class="home-about">
+            <a href="#">Home</a>&nbsp;&nbsp;&nbsp;
             <a href="#">ABOUT</a>
-            </p>  
-        <select id="languageSelect" style="float: right; width: 200px; height: 50px; font-size: 20px;">
-            <option> 한국어</option>
-            <option> English</option>
-            <option> 日本語</option>
-        </select>
+        </p>
     </header>
-    
+
     <div class="container">
-        <sidebar>sidebar</sidebar>
+        <sidebar>
+            <div id="select-day">날짜 선택</div>
+            <div id="selected-color"></div>
+            <div id="color-picker">
+                <div class="color-select"></div>
+                <div class="color-option" id="red"></div>
+                <div class="color-option" id="orange"></div>
+                <div class="color-option" id="yellow"></div>
+                <div class="color-option" id="green"></div>
+                <div class="color-option" id="blue"></div>
+                <div class="color-option" id="indigo"></div>
+                <div class="color-option" id="violet"></div>
+            </div>
+        </sidebar>
         <main>
             <div class="indicator-date"></div>
             <div class="calendar">
@@ -44,7 +54,8 @@
             </div>
         </main>
     </div>
-        
+
     <footer>foote1r</footer>
 </body>
+
 </html>

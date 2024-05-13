@@ -25,7 +25,7 @@ sidebar {
 }
 
 main {
-    width: 75%;
+    width: 70%;
     height: 3600px;
     float: right;
 }
@@ -55,6 +55,7 @@ footer {
     width: 100%;
     font-weight: bold;
     padding: 5px;
+    font-size: 80px;
     text-align: center;
 }
 
@@ -63,11 +64,13 @@ footer {
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 10px;
     padding: 10px;
+    
 }
 
 .day {
     border: 1px solid black;
     text-align: center;
+    font-size: 50px;
     padding: 10px;
 }
 

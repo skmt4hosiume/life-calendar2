@@ -13,7 +13,7 @@ header, sidebar, main, footer {
 
 header {
     width: 100%;
-    height: 200px;
+    height: 300px;
     margin-bottom: 30px;
 }
 
@@ -22,6 +22,14 @@ header {
     height: auto;
     float: left;
     padding-left: 50px;
+}
+
+.login-signup {
+    font-size: 100px;
+    height: auto;
+    text-align: right;
+    justify-content: center;
+    line-height: 1px;
 }
 
 

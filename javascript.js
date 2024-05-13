@@ -67,6 +67,8 @@ function appendSelected() {
 
     // 각 날짜 요소에 이벤트 리스너 추가
     const days = document.querySelectorAll('.day');
+    const selectedColor = document.getElementById('selected-color'); // selectedColor 요소 선택
+    const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
     days.forEach(day => {
         day.addEventListener('click', () => {
             // 선택한 날짜를 업데이트하고 이전 선택을 취소
@@ -75,6 +77,13 @@ function appendSelected() {
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
+
+            // 선택한 날짜가 있을 때 selectedColor를 보여줌
+            selectedColor.style.display = 'block';
+
+            // sidebar에 선택한 날짜 추가
+            const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
+            sidebar.textContent = `${monthName} ${selectedDay.textContent}일`;
         });
     });
 }
@@ -104,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const currentYear = new Date().getFullYear();
     generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
-    
     appendSelected()
     
    // 언어가 변경될 때마다 새로운 언어로 달력을 생성
@@ -117,3 +125,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const selectedColor = document.getElementById('selected-color');
+    const colorPicker = document.getElementById('color-picker');
+    
+    // 선택한 색상을 selected-color에 반영하는 함수
+    function setSelectedColor(color) {
+        selectedColor.style.backgroundColor = color;
+    }
+    
+    // 선택한 색상을 보여주는 함수
+    function showSelectedColor() {
+        selectedColor.style.display = 'block';
+    }
+    
+    // color-picker를 표시하거나 숨기는 함수
+    function toggleColorPicker() {
+        if (colorPicker.style.display === 'block') {
+            colorPicker.style.display = 'none';
+        } else {
+            colorPicker.style.display = 'block';
+        }
+    }
+    
+    // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
+    selectedColor.addEventListener('click', function () {
+        toggleColorPicker();
+    });
+    
+    // 각 색상 옵션을 클릭했을 때의 동작
+    const colorOptions = document.querySelectorAll('.color-option');
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            const color = option.id;
+            setSelectedColor(color);
+            toggleColorPicker();
+        });
+    });
+    
+    // 페이지 로드 후 color-picker를 숨김
+    colorPicker.style.display = 'none';
+    selectedColor.style.display = 'none';
+})

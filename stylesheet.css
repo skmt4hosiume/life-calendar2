@@ -43,6 +43,14 @@ header {
     line-height: 1px;
 }
 
+.home-about {
+    font-size: 100px;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    line-height: 1px;
+}
+
 sidebar {
     width: 20%;
     height: 3600px;
@@ -144,33 +152,13 @@ footer {
     display: inline-block;
 }
 
-#red {
-    background-color: red;
-}
-
-#orange {
-    background-color: orange;
-}
-
-#yellow {
-    background-color: yellow;
-}
-
-#green {
-    background-color: green;
-}
-
-#blue {
-    background-color: blue;
-}
-
-#indigo {
-    background-color: indigo;
-}
-
-#violet {
-    background-color: violet;
-}
+#red { background-color: red; }
+#orange { background-color: orange; }
+#yellow { background-color: yellow; }
+#green { background-color: green; }
+#blue { background-color: blue; }
+#indigo { background-color: indigo; }
+#violet { background-color: violet; }
 
 #selected-color {
     width: 120px;

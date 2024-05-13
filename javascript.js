@@ -79,12 +79,33 @@ function appendSelected() {
     });
 }
 
+// 현재 시간 나타내는 함수
+function updateTime() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const date = now.getDate().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? '오후' : '오전';
+    const formattedHours = (hours % 12) || 12;
+
+    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} ${year}-${month}-${date}`;
+    document.querySelector('.indicator-date').innerText = timeString;
+}
+
+
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
-    const currentYear = new Date().getFullYear();
-
-    generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
+    
+    updateTime();
+    setInterval(updateTime, 1000);
     appendSelected()
+    
+    const currentYear = new Date().getFullYear();
+    generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
+
     
    // 언어가 변경될 때마다 새로운 언어로 달력을 생성
     const languageSelect = document.getElementById('languageSelect');

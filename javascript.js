@@ -114,14 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
     generateDaysForMonth(currentYear, 'ko'); //초기에는 한국어로 설정
     appendSelected()
-    
-   // 언어가 변경될 때마다 새로운 언어로 달력을 생성
+        
+    // 언어가 변경될 때마다 새로운 언어로 달력을 생성
     const languageSelect = document.getElementById('languageSelect');
     languageSelect.addEventListener('change', (event) => {
         const language = event.target.value;
+        const currentYear = new Date().getFullYear(); // 현재 연도를 가져옴
         document.querySelectorAll('.month').forEach(month => month.innerHTML = '');
         generateDaysForMonth(currentYear, language);
-        appendSelected(); // 다시 이벤트 리스너를 추가하여 선택한 날짜 표시를 유지
+        appendSelected(); // 이벤트 리스너를 다시 추가하여 선택한 날짜 표시 유지
+        
+        // 새로운 언어로 선택한 날짜를 표시하는 것을 확실히 하기 위해 appendSelected 함수를 다시 호출
+        appendSelected();
     });
 });
 

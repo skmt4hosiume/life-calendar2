@@ -15,18 +15,18 @@ function isLeapYear(year) {
 // 각 월마다 날짜 생성 
 function generateDaysForMonth(year) {
     const months = [
-        { month: 'January', days: 31 },
-        { month: 'February', days: isLeapYear(year) ? 29 : 28 },
-        { month: 'March', days: 31 },
-        { month: 'April', days: 30 },
-        { month: 'May', days: 31 },
-        { month: 'June', days: 30 },
-        { month: 'July', days: 31 },
-        { month: 'August', days: 31 },
-        { month: 'September', days: 30 },
-        { month: 'October', days: 31 },
-        { month: 'November', days: 30 },
-        { month: 'December', days: 31 }
+        { month: '1월',  days: 31 },
+        { month: '2월',  days: isLeapYear(year) ? 29 : 28 },
+        { month: '3월',  days: 31 },
+        { month: '4월',  days: 30 },
+        { month: '5월',  days: 31 },
+        { month: '6월',  days: 30 },
+        { month: '7월',  days: 31 },
+        { month: '8월',  days: 31 },
+        { month: '9월',  days: 30 },
+        { month: '10월', days: 31 },
+        { month: '11월', days: 30 },
+        { month: '12월', days: 31 }
     ];
 
     months.forEach((m, index) => {

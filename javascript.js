@@ -99,6 +99,7 @@ function updateTime() {
     document.querySelector('.indicator-date').innerText = timeString;
 }
 
+//캘린더에 색깔 부여하는 함수
 function colorEffect(color) {
     const allDays = document.querySelectorAll('.day');
 
@@ -116,30 +117,16 @@ function colorEffect(color) {
     });
 }
 
-
-// 함수 실행 부분들
-document.addEventListener('DOMContentLoaded', () => {
-
-    updateTime();
-    setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
-    appendSelected()
-});
-
-document.addEventListener('DOMContentLoaded', () => {
+// 사이드바 색깔 선택 이벤트 함수
+function colorPickerEvent() {
     const selectedColor = document.getElementById('selected-color');
     const colorPicker = document.getElementById('color-picker');
-
+    
     // 선택한 색상을 selected-color에 반영하는 함수
     function setSelectedColor(color) {
         selectedColor.style.backgroundColor = color;
     }
-
-    // 선택한 색상을 보여주는 함수
-    function showSelectedColor() {
-        selectedColor.style.display = 'block';
-    }
-
+    
     // color-picker를 표시하거나 숨기는 함수
     function toggleColorPicker() {
         if (colorPicker.style.display === 'block') {
@@ -148,12 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
             colorPicker.style.display = 'block';
         }
     }
-
+    
     // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
     selectedColor.addEventListener('click', () => {
         toggleColorPicker();
     });
-
+    
     // 각 색상 옵션을 클릭했을 때의 동작
     const colorOptions = document.querySelectorAll('.color-option');
     colorOptions.forEach(option => {
@@ -164,8 +151,19 @@ document.addEventListener('DOMContentLoaded', () => {
             colorEffect(color)
         });
     });
-
+    
     // 페이지 로드 후 color-picker를 숨김
     colorPicker.style.display = 'none';
     selectedColor.style.display = 'none';
-})
+}
+
+
+// 함수 실행 부분들
+document.addEventListener('DOMContentLoaded', () => {
+    updateTime();
+    setInterval(updateTime, 1000);
+    generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
+    appendSelected();
+    colorPickerEvent();
+});
+

@@ -87,16 +87,33 @@ function appendSelected() {
 function updateTime() {
     const now = new Date();
     const hours = now.getHours();
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
     const year = now.getFullYear();
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const date = now.getDate().toString().padStart(2, '0');
-    const ampm = hours >= 12 ? '오후' : '오전';
-    const formattedHours = (hours % 12) || 12;
+
+    let ampm = '오전';
+    let formattedHours = hours;
+    if (hours >= 12) {
+        ampm = '오후';
+        formattedHours = (hours % 12) || 12;
+    }
+
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
 
     const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일`;
     document.querySelector('.indicator-date').innerText = timeString;
+
+    backgroundColor(hours); // 배경색 업데이트
+}
+
+//시간에 따라 배경 변경(오전 6시~ 오후6시까지)
+function backgroundColor(hour) {
+    if (hour >= 6 && hour < 18) {
+        document.body.style.backgroundColor = "white"; // 오전 6시부터 오후 6시까지 흰색 배경색
+    } else {
+        document.body.style.backgroundColor = "lightgrey"; // 그 외 시간에는 회색 배경색
+    }
 }
 
 //캘린더에 색깔 부여하는 함수

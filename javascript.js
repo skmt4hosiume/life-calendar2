@@ -95,7 +95,7 @@ function updateTime() {
     const ampm = hours >= 12 ? '오후' : '오전';
     const formattedHours = (hours % 12) || 12;
 
-    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} ${year}-${month}-${date}`;
+    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일`;
     document.querySelector('.indicator-date').innerText = timeString;
 }
 

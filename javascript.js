@@ -47,6 +47,7 @@ function generateDaysForMonth(year) {
             const dayDiv = document.createElement('div');
             dayDiv.className = 'day';
             dayDiv.textContent = day;
+            dayDiv.dataset.constant = '';
             daysContainer.appendChild(dayDiv);
         }
 
@@ -65,13 +66,13 @@ function appendSelected() {
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
     days.forEach(day => {
         day.addEventListener('click', () => {
+            
             // 선택한 날짜를 업데이트하고 이전 선택을 취소
             if (selectedDay) {
                 selectedDay.classList.remove('selected');
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
-
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
             sidebar.textContent = `${monthName} ${selectedDay.textContent}일`;
@@ -114,6 +115,19 @@ function backgroundColor(hour) {
 
 //캘린더에 색깔 부여하는 함수
 function colorEffect(color) {
+    const allDays = document.querySelectorAll('.day'); 
+
+    // 모든 day 클래스를 가진 요소에 대해 반복문을 실행합니다.
+    allDays.forEach(function (day) {
+        if (day.classList.contains('color-effect')) {
+            const shadowID = day.dataset.constant;
+            const alpha = alphaValue(shadowID);
+            day.style.backgroundColor = shadeCalc(color, alpha);
+        }
+    });
+}
+
+function colorEffectShadow(color, id) {
     const allDays = document.querySelectorAll('.day');
 
     // 모든 day 클래스를 가진 요소에 대해 반복문을 실행합니다.
@@ -122,12 +136,22 @@ function colorEffect(color) {
         // 선택된 요소에만 color-effect 클래스를 추가합니다.
         if (day.classList.contains('selected')) {
             day.classList.add('color-effect');
-        }
-
-        if (day.classList.contains('color-effect')) {
-            day.style.backgroundColor = color; // 색상 변경
+            day.style.backgroundColor = color;
+            day.dataset.constant = id
         }
     });
+}
+
+// shadow강도에 따른 숫자값 반환
+function alphaValue(id) {
+    const alpha = {
+        'shadow-100' : 1,
+        'shadow-75': 0.75,
+        'shadow-50': 0.5,
+        'shadow-40': 0.4,
+        'shadow-30': 0.3,
+    }
+    return alpha[id];
 }
 
 function setSelectedColor(color) {
@@ -135,37 +159,38 @@ function setSelectedColor(color) {
     selectedColor.style.backgroundColor = color;
 }
 
-function setShadowColor(color) {
-    
-    const colorMap = {
+function colorMap(color) {
+    const colorMaps = {
         'red'      : '#ff0000',
         'orange'   : '#ffa500',
         'yellow'   : '#ffff00',
         'green'    : '#20a020',
-        'turquoise':'#40e0d0',
+        'turquoise': '#40e0d0',
         'blue'     : '#0000ff',
         'purple'   : '#ee82ee',
         'gray'     : '#b0b0b0',
     };
+    return colorMaps[color];
+}
+
+// 명암 계산
+function shadeCalc(color, alpha) {
+    const rgb = hexToRgb(colorMap(color));
+    return `rgb(${Math.round(rgb.r * alpha)}, ${Math.round(rgb.g * alpha)}, ${Math.round(rgb.b * alpha)})`
+}
+
+function setShadowColor(color) {
+    
 
     // 입력된 색상에서 RGB 값 추출
-    const rgb = hexToRgb(colorMap[color]);
+    const rgb = hexToRgb(colorMap(color));
 
-    // 각 그림자 색상 계산
-    const shades = [
-        `rgb(${Math.round(rgb.r * 1)}, ${Math.round(rgb.g * 1)}, ${Math.round(rgb.b * 1)})`, // 100%
-        `rgb(${Math.round(rgb.r * 0.75)}, ${Math.round(rgb.g * 0.75)}, ${Math.round(rgb.b * 0.75)})`, // 75%
-        `rgb(${Math.round(rgb.r * 0.5)}, ${Math.round(rgb.g * 0.5)}, ${Math.round(rgb.b * 0.5)})`, // 50%
-        `rgb(${Math.round(rgb.r * 0.4)}, ${Math.round(rgb.g * 0.4)}, ${Math.round(rgb.b * 0.4)})`, // 40%
-        `rgb(${Math.round(rgb.r * 0.3)}, ${Math.round(rgb.g * 0.3)}, ${Math.round(rgb.b * 0.3)})` // 30%
-    ];
-
-    // 각 그림자 요소에 색상 적용
-    document.getElementById('shadow-100').style.backgroundColor = shades[0];
-    document.getElementById('shadow-75').style.backgroundColor = shades[1];
-    document.getElementById('shadow-50').style.backgroundColor = shades[2];
-    document.getElementById('shadow-40').style.backgroundColor = shades[3];
-    document.getElementById('shadow-30').style.backgroundColor = shades[4];
+    // 각 명암 요소에 색상 적용
+    document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
+    document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);
+    document.getElementById('shadow-50').style.backgroundColor = shadeCalc(color, 0.5);
+    document.getElementById('shadow-40').style.backgroundColor = shadeCalc(color, 0.4);
+    document.getElementById('shadow-30').style.backgroundColor = shadeCalc(color, 0.3);
 }
 
 function hexToRgb(hex) {
@@ -194,6 +219,7 @@ function colorPickerEvent() {
             const color = option.id;
             setSelectedColor(color);
             setShadowColor(color);
+            colorEffect(color);
         });
     });
 }
@@ -204,8 +230,9 @@ function colorShadowEvent() {
     colorShadowOptions.forEach(option => {
         option.addEventListener('click', () => {
             const color = option.style.backgroundColor;
+            const id = option.id
             setSelectedColor(color);
-            
+            colorEffectShadow(color, id);
         })
     })
 }

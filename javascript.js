@@ -62,10 +62,7 @@ function appendSelected() {
 
     // 각 날짜 요소에 이벤트 리스너 추가
     const days = document.querySelectorAll('.day');
-    const selectedColor = document.getElementById('selected-color'); // selectedColor 요소 선택
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
-    const defaultColor = 'green';
-    const colorShadow = document.getElementById('color-shadow');
     days.forEach(day => {
         day.addEventListener('click', () => {
             // 선택한 날짜를 업데이트하고 이전 선택을 취소
@@ -74,11 +71,6 @@ function appendSelected() {
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
-
-            // 선택한 날짜가 있을 때 selectedColor를 보여줌
-            selectedColor.style.display = 'block';
-            colorShadow.style.display = 'none';
-            selectedColor.style.backgroundColor = defaultColor;
 
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
@@ -138,134 +130,93 @@ function colorEffect(color) {
     });
 }
 
-// 사이드바 색깔 선택 이벤트 함수
-function colorPickerEvent() {
-    const selectedColor = document.getElementById('selected-color');
-    const colorPicker = document.getElementById('color-picker');
-    const colorShadow = document.getElementById('color-shadow');
+function setSelectedColor(color) {
+    const selectedColor = document.querySelector('.selected-color');
+    selectedColor.style.backgroundColor = color;
+}
 
+function setShadowColor(color) {
+    
     const colorMap = {
-        'red' : '#ff0000',
-        'orange' : '#ffa500',
-        'yellow' : '#ffff00',
-        'green' : '#008000',
-        'blue' : '#0000ff',
-        'indigo' : '#4b0082',
-        'purple' : '#8b00ff',
+        'red'      : '#ff0000',
+        'orange'   : '#ffa500',
+        'yellow'   : '#ffff00',
+        'green'    : '#20a020',
+        'turquoise':'#40e0d0',
+        'blue'     : '#0000ff',
+        'purple'   : '#ee82ee',
+        'gray'     : '#b0b0b0',
     };
 
-    function colorNametoHex(colorName){
-        return colorMap[colorName] || null;
-    }
-    
-    // 선택한 색상을 selected-color에 반영하는 함수
-    function setSelectedColor(color) {
-        selectedColor.style.backgroundColor = color;
-    }
+    // 입력된 색상에서 RGB 값 추출
+    const rgb = hexToRgb(colorMap[color]);
 
-    // 선택된 색상의 어두운 색상 생성하는 함수
-    function generateDarkColors(color) {
-        const rgb = hexToRgb(colorNametoHex(color));
-        const shades = [
-            `rgb(${Math.round(rgb.r * 1)}, ${Math.round(rgb.g * 1)}, ${Math.round(rgb.b * 1)})`,
-            `rgb(${Math.round(rgb.r * 0.75)}, ${Math.round(rgb.g * 0.75)}, ${Math.round(rgb.b * 0.75)})`,
-            `rgb(${Math.round(rgb.r * 0.5)}, ${Math.round(rgb.g * 0.5)}, ${Math.round(rgb.b * 0.5)})`,
-            `rgb(${Math.round(rgb.r * 0.4)}, ${Math.round(rgb.g * 0.4)}, ${Math.round(rgb.b * 0.4)})`,
-            `rgb(${Math.round(rgb.r * 0.3)}, ${Math.round(rgb.g * 0.3)}, ${Math.round(rgb.b * 0.3)})`
-        ];
-        return shades;
-    }
+    // 각 그림자 색상 계산
+    const shades = [
+        `rgb(${Math.round(rgb.r * 1)}, ${Math.round(rgb.g * 1)}, ${Math.round(rgb.b * 1)})`, // 100%
+        `rgb(${Math.round(rgb.r * 0.75)}, ${Math.round(rgb.g * 0.75)}, ${Math.round(rgb.b * 0.75)})`, // 75%
+        `rgb(${Math.round(rgb.r * 0.5)}, ${Math.round(rgb.g * 0.5)}, ${Math.round(rgb.b * 0.5)})`, // 50%
+        `rgb(${Math.round(rgb.r * 0.4)}, ${Math.round(rgb.g * 0.4)}, ${Math.round(rgb.b * 0.4)})`, // 40%
+        `rgb(${Math.round(rgb.r * 0.3)}, ${Math.round(rgb.g * 0.3)}, ${Math.round(rgb.b * 0.3)})` // 30%
+    ];
 
-    // Hex 색상 코드를 RGB로 변환하는 함수
-    function hexToRgb(hex) {
-        // hex 코드가 '#' 문자로 시작하는지 확인
-        hex = hex.replace(/^#/, '');
-    
-        // hex 코드의 유효성을 확인하고, 3자리 코드를 6자리로 확장
-        if (hex.length === 3) {
-            hex = hex.split('').map(char => char + char).join('');
-        }
-    
-        // 16진수를 10진수로 변환하여 RGB 값을 추출
-        const r = parseInt(hex.substring(0, 2), 16);
-        const g = parseInt(hex.substring(2, 4), 16);
-        const b = parseInt(hex.substring(4, 6), 16);
-    
-        return { r, g, b };
-    }
+    // 각 그림자 요소에 색상 적용
+    document.getElementById('shadow-100').style.backgroundColor = shades[0];
+    document.getElementById('shadow-75').style.backgroundColor = shades[1];
+    document.getElementById('shadow-50').style.backgroundColor = shades[2];
+    document.getElementById('shadow-40').style.backgroundColor = shades[3];
+    document.getElementById('shadow-30').style.backgroundColor = shades[4];
+}
 
-        // 명암 색 5개을 생성하는 함수
-    function createShadow(color) {
-        colorShadow.innerHTML = ''; // 이전의 색상 div를 모두 지움
-            
-        const darkColors = generateDarkColors(color); // 선택된 색상의 어두운 색상들 생성
-        darkColors.forEach(darkColor => {
-            const shadeDiv = document.createElement('div');
-            shadeDiv.classList.add('shade');
-            shadeDiv.style.backgroundColor = darkColor;        
-            colorShadow.appendChild(shadeDiv); // 생성된 어두운 색상 div를 shadeContainer에 추가
-        });
+function hexToRgb(hex) {
+    // hex 코드가 '#' 문자로 시작하는지 확인
+    hex = hex.replace(/^#/, '');
 
-        colorShadow.style.display = 'flex';
+    // hex 코드의 유효성을 확인하고, 3자리 코드를 6자리로 확장
+    if (hex.length === 3) {
+        hex = hex.split('').map(char => char + char).join('');
     }
-        
+    // 16진수를 10진수로 변환하여 RGB 값을 추출
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
 
-    // color-picker를 표시하거나 숨기는 함수
-    function toggleColorPicker() {
-        if (colorPicker.style.display === 'block') {
-            colorPicker.style.display = 'none';
-        } else {
-            colorPicker.style.display = 'block';
-        }
-    }
+    return { r, g, b };
+}
 
-    function toggleColorShadow() {
-        if (colorShadow.style.display === 'block') {
-            colorShadow.style.display = 'none';
-        } else {
-            colorShadow.style.display = 'block';
-        }
-    }
-    
-    // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
-    selectedColor.addEventListener('click', () => {
-        toggleColorPicker();
-    });
-    
+// 사이드바 색깔 선택 이벤트 함수
+function colorPickerEvent() {
+
     // 각 색상 옵션을 클릭했을 때의 동작
     const colorOptions = document.querySelectorAll('.color-option');
     colorOptions.forEach(option => {
         option.addEventListener('click', () => {
             const color = option.id;
-            toggleColorShadow();
             setSelectedColor(color);
-            toggleColorPicker();
-            createShadow(color);
+            setShadowColor(color);
         });
     });
-
-    colorShadow.addEventListener('click', (event) => {
-        if (event.target.classList.contains('shade')) {
-            const color = event.target.style.backgroundColor;
-            colorEffect(color);
-            setSelectedColor(color);
-            colorShadow.style.display = 'none';
-        }
-    });
-    
-    // 페이지 로드 후 color-picker를 숨김
-    colorPicker.style.display = 'none';
-    selectedColor.style.display = 'none';
-    colorShadow.style.display = 'none';
 }
 
+// 사이드바 명암 선택 이벤트 함수
+function colorShadowEvent() {
+    const colorShadowOptions = document.querySelectorAll('.shadow-option');
+    colorShadowOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            console.log(option)
+
+        })
+    })
+}
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
+    setShadowColor("green");
     updateTime();
     setInterval(updateTime, 1000);
     generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
     appendSelected();
     colorPickerEvent();
+    colorShadowEvent();
 });
 

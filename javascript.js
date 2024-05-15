@@ -138,6 +138,7 @@ function colorEffect(color) {
 function colorPickerEvent() {
     const selectedColor = document.getElementById('selected-color');
     const colorPicker = document.getElementById('color-picker');
+    const opacityButton = document.querySelector('.opacity');
     
     // 선택한 색상을 selected-color에 반영하는 함수
     function setSelectedColor(color) {
@@ -152,26 +153,23 @@ function colorPickerEvent() {
             colorPicker.style.display = 'block';
         }
     }
-    
+
+    function toggleopacityButton(){
+        if (opacityButton.style.display === 'flex') {
+        } else {
+            opacityButton.style.display = 'flex';
+        }
+    }
     // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
     selectedColor.addEventListener('click', () => {
         toggleColorPicker();
-    });
-    
-    // 각 색상 옵션을 클릭했을 때의 동작
-    const colorOptions = document.querySelectorAll('.color-option');
-    colorOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const color = option.id;
-            setSelectedColor(color);
-            toggleColorPicker();
-            colorEffect(color)
-        });
-    });
+        toggleopacityButton();} 
+    );
     
     // 페이지 로드 후 color-picker를 숨김
     colorPicker.style.display = 'none';
     selectedColor.style.display = 'none';
+    opacityButton.style.display = 'none';
 }
 
 

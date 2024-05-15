@@ -54,6 +54,22 @@ sidebar {
     margin-bottom: 30px;
 }
 
+.opacity{
+    gap: 15px;
+    height: 5%;
+    display: flex;
+}
+
+.button{
+    border: 1px solid black;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 50px;
+    grid-gap: 12px;
+    border-radius: 50%;
+}
+
 main {
     width: 70%;
     height: 3600px;

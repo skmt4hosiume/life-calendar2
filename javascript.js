@@ -15,15 +15,15 @@ function isLeapYear(year) {
 // 각 월마다 날짜 생성 
 function generateDaysForMonth(year) {
     const months = [
-        { month: '1월',  days: 31 },
-        { month: '2월',  days: isLeapYear(year) ? 29 : 28 },
-        { month: '3월',  days: 31 },
-        { month: '4월',  days: 30 },
-        { month: '5월',  days: 31 },
-        { month: '6월',  days: 30 },
-        { month: '7월',  days: 31 },
-        { month: '8월',  days: 31 },
-        { month: '9월',  days: 30 },
+        { month: '1월', days: 31 },
+        { month: '2월', days: isLeapYear(year) ? 29 : 28 },
+        { month: '3월', days: 31 },
+        { month: '4월', days: 30 },
+        { month: '5월', days: 31 },
+        { month: '6월', days: 30 },
+        { month: '7월', days: 31 },
+        { month: '8월', days: 31 },
+        { month: '9월', days: 30 },
         { month: '10월', days: 31 },
         { month: '11월', days: 30 },
         { month: '12월', days: 31 }
@@ -66,7 +66,7 @@ function appendSelected() {
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
     days.forEach(day => {
         day.addEventListener('click', () => {
-            
+
             // 선택한 날짜를 업데이트하고 이전 선택을 취소
             if (selectedDay) {
                 selectedDay.classList.remove('selected');
@@ -115,7 +115,7 @@ function backgroundColor(hour) {
 
 //캘린더에 색깔 부여하는 함수
 function colorEffect(color) {
-    const allDays = document.querySelectorAll('.day'); 
+    const allDays = document.querySelectorAll('.day');
 
     // 모든 day 클래스를 가진 요소에 대해 반복문을 실행합니다.
     allDays.forEach(function (day) {
@@ -145,7 +145,7 @@ function colorEffectShadow(color, id) {
 // shadow강도에 따른 숫자값 반환
 function alphaValue(id) {
     const alpha = {
-        'shadow-100' : 1,
+        'shadow-100': 1,
         'shadow-75': 0.75,
         'shadow-50': 0.5,
         'shadow-40': 0.4,
@@ -161,14 +161,14 @@ function setSelectedColor(color) {
 
 function colorMap(color) {
     const colorMaps = {
-        'red'      : '#ff0000',
-        'orange'   : '#ffa500',
-        'yellow'   : '#ffff00',
-        'green'    : '#20a020',
+        'red': '#ff0000',
+        'orange': '#ffa500',
+        'yellow': '#ffff00',
+        'green': '#20a020',
         'turquoise': '#40e0d0',
-        'blue'     : '#0000ff',
-        'purple'   : '#ee82ee',
-        'gray'     : '#b0b0b0',
+        'blue': '#0000ff',
+        'purple': '#ee82ee',
+        'gray': '#b0b0b0',
     };
     return colorMaps[color];
 }
@@ -180,7 +180,7 @@ function shadeCalc(color, alpha) {
 }
 
 function setShadowColor(color) {
-    
+
 
     // 입력된 색상에서 RGB 값 추출
     const rgb = hexToRgb(colorMap(color));
@@ -247,4 +247,3 @@ document.addEventListener('DOMContentLoaded', () => {
     colorPickerEvent();
     colorShadowEvent();
 });
-

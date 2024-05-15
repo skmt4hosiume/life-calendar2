@@ -2,13 +2,16 @@ body {
     max-width: 4800px;
     min-width: 4800px;
     margin: auto;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
 }
 
 a {
     color: #424242;
     text-decoration: none;
+    transition: border-bottom 0.3s;
 }
-opa
+
 a:hover {
     border-bottom: 2px solid black;
 }
@@ -21,20 +24,31 @@ footer {
     font-size: 30px;
     font-weight: bold;
     border: 2px solid black;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 header {
     width: 100%;
     height: 300px;
+    background-color: #3498db;
+    color: #fff;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
 }
 
 .logo {
     float: left;
-    width: 1000px;
-    line-height: 300px;
-    padding-top: 40px;
-    padding-left: 100px;
+    width: auto;
+    line-height: 1;
+    font-size: 60px;
+    padding: 0;
 }
 
 .nav-list {
@@ -43,7 +57,7 @@ header {
 
 .nav-list li {
     display: inline;
-    margin: 100px;
+    margin: 0 30px;
     font-size: 50px;
 }
 
@@ -51,21 +65,20 @@ sidebar {
     width: 20%;
     height: 3600px;
     float: left;
+    background-color: #f8f9fa;
+    border-right: 2px solid #e0e0e0;
     margin-bottom: 30px;
+    margin-right: 30px; /* 추가한 간격 */
 }
 
-#select-day {
-    border-bottom: 1px solid black;
-}
-
-
-.opacity{
+.opacity {
     gap: 15px;
     height: 5%;
     display: flex;
+    margin: 20px 0;
 }
 
-.button{
+.button {
     border: 1px solid black;
     text-align: center;
     display: grid;
@@ -76,13 +89,11 @@ sidebar {
 }
 
 main {
-    width: 70%;
-    height: 3600px;
+    width: calc(80% - 30px); 
+    height: 4000px; 
     float: right;
+    background-color: #ffffff;
 }
-
-
-
 
 .indicator-date {
     width: 100%;
@@ -97,12 +108,17 @@ main {
     height: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
 }
 
 .month {
     margin: 30px;
     border: 1px solid black;
     display: grid;
+    border-radius: 10px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .month-name {
@@ -112,6 +128,10 @@ main {
     font-size: 80px;
     text-align: center;
     border-bottom: 1px solid black;
+    background-color: #3498db;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .days-container {
@@ -128,10 +148,13 @@ main {
     font-size: 50px;
     padding: 10px;
     line-height: 95px;
+    background-color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .day:hover {
     color: red;
+    background-color: #f1f1f1;
 }
 
 .day:active {
@@ -142,96 +165,87 @@ main {
     background-color: green;
 }
 
-
-
 #select-day {
     text-align: center;
     font-size: 100px;
 }
 
-
-
-#red    { background-color: red; }
-#orange { background-color: orange; }
-#yellow { background-color: yellow; }
-#green  { background-color: green; }
-#turquoise  { background-color: turquoise;}
-#blue   { background-color: blue; }
-#purple { background-color: purple; }
-#violet { background-color: violet; }
-
-.select-color-container {
-    width: 100%;
-    height: 200px;
+#color-picker {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid black;
-}
-
-.select-color-container .text{
-    font-size: 80px;
-    padding-right: 50px;
-    float: left;
-}
-
-.select-color-container .selected-color {
-    width: 150px;
-    height: 150px;
-    border: 10px solid black;
-    border-radius: 50%;
-    background-color: green;
-}
-
-.color-picker {
-    clear: left;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    place-items: center;
-    border-bottom: 1px solid black;
 }
 
 .color-option {
-    width: 150px;
-    height: 150px;
-    margin: 30px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
     cursor: pointer;
-    border: 10px solid #000000;
-    border-radius: 20px
+    border: 4px solid #adadad;
+    border-radius: 5px;
+    display: inline-block;
+    transition: transform 0.3s;
 }
 
-.color-shadow {
-    width: 100%;
-    height: 200px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    place-items: center;
-    border-bottom: 1px solid black;
+.color-option:hover {
+    transform: scale(1.1);
 }
 
-.color-shadow *{
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
-    border: 10px solid #000000;
-    border-radius: 20px
+#red {
+    background-color: red;
 }
 
+#orange {
+    background-color: orange;
+}
 
+#yellow {
+    background-color: yellow;
+}
 
+#green {
+    background-color: green;
+}
 
+#blue {
+    background-color: blue;
+}
 
-.shade {
+#indigo {
+    background-color: indigo;
+}
+
+#violet {
+    background-color: violet;
+}
+
+#selected-color {
     width: 120px;
     height: 120px;
-    margin: 0 5px;
+    margin: 5px;
+    padding-left: 1.5px;
+    cursor: pointer;
+    border: 2px solid #adadad;
+    border-radius: 10px;
+    background-color: green;
+    margin: 0 auto;
+    margin-top: 10px;
+    transition: transform 0.3s;
 }
 
+#selected-color:hover {
+    transform: scale(1.2);
+}
 
 footer {
     width: 100%;
     height: 300px;
     clear: both;
+    background-color: #3498db;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-container {

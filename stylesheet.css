@@ -184,6 +184,18 @@ main {
     transform: scale(1.2);
 }
 
+#color-shadow {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.shade {
+    width: 120px;
+    height: 120px;
+    margin: 0 5px;
+}
+
 
 footer {
     width: 100%;

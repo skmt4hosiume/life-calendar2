@@ -203,8 +203,9 @@ function colorShadowEvent() {
     const colorShadowOptions = document.querySelectorAll('.shadow-option');
     colorShadowOptions.forEach(option => {
         option.addEventListener('click', () => {
-            console.log(option)
-
+            const color = option.style.backgroundColor;
+            setSelectedColor(color);
+            
         })
     })
 }

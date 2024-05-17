@@ -109,14 +109,14 @@ function updateTime() {
     backgroundColor(hours); // 배경색 업데이트
 }
 
-// //시간에 따라 배경 변경(오전 6시~ 오후6시까지)
-// function backgroundColor(hour) {
-//     if (hour >= 6 && hour < 18) {
-//         document.body.style.backgroundColor = "white"; // 오전 6시부터 오후 6시까지 흰색 배경색
-//     } else {
-//         document.body.style.backgroundColor = "lightgrey"; // 그 외 시간에는 회색 배경색
-//     }
-// }
+//시간에 따라 배경 변경(오전 6시~ 오후6시까지)
+function backgroundColor(hour) {
+    if (hour >= 6 && hour < 18) {
+        document.body.style.backgroundColor = "white"; // 오전 6시부터 오후 6시까지 흰색 배경색
+    } else {
+        document.body.style.backgroundColor = "lightgrey"; // 그 외 시간에는 회색 배경색
+    }
+}
 
 //캘린더에 색깔 부여하는 함수
 function colorEffect(color) {
@@ -185,6 +185,11 @@ function shadeCalc(color, alpha) {
 }
 
 function setShadowColor(color) {
+
+
+    // 입력된 색상에서 RGB 값 추출
+    const rgb = hexToRgb(colorMap(color));
+
     // 각 명암 요소에 색상 적용
     document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
     document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);
@@ -236,7 +241,6 @@ function colorShadowEvent() {
         })
     })
 }
-
 // '색칠 삭제' 버튼 클릭 이벤트 함수
 function resetColorEvent() {
     const resetButton = document.getElementById('reset-color');
@@ -253,7 +257,6 @@ function resetColorEvent() {
     });
 }
 
-// 텍스트 저장 버튼 함수
 function saveTextButton() {
     const saveButton = document.getElementById('textbutton');
     const memoTextarea = document.querySelector('.input')
@@ -265,7 +268,6 @@ function saveTextButton() {
     })
 }
 
-// 날짜 선택 이벤트 함수
 function dayClickEvent() {
     const allDays = document.querySelectorAll('.day');
 
@@ -281,6 +283,7 @@ function dayClickEvent() {
         })
     })
 }
+
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {

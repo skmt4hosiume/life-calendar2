@@ -181,10 +181,6 @@ function shadeCalc(color, alpha) {
 
 function setShadowColor(color) {
 
-
-    // 입력된 색상에서 RGB 값 추출
-    const rgb = hexToRgb(colorMap(color));
-
     // 각 명암 요소에 색상 적용
     document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
     document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);

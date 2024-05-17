@@ -284,6 +284,17 @@ function dayClickEvent() {
     })
 }
 
+function changeFont(){
+    const textarea = document.querySelector('.input');
+    const changefontbutton = document.getElementById('fontbutton');
+    
+    changefontbutton.addEventListener('click', () => {
+        const selectedFont = fontchange.value;
+        textarea.style.fontFamily = selectedFont;
+    })
+}
+
+
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {

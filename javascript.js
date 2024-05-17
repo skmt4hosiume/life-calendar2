@@ -64,6 +64,8 @@ function appendSelected() {
     // 각 날짜 요소에 이벤트 리스너 추가
     const days = document.querySelectorAll('.day');
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
+    const memoTextarea = document.querySelector('.input'); // memo textarea 요소 선택
+
     days.forEach(day => {
         day.addEventListener('click', () => {
 
@@ -73,9 +75,14 @@ function appendSelected() {
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
+            
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
-            sidebar.textContent = `${monthName} ${selectedDay.textContent}일`;
+            const selectedDate = `${monthName} ${selectedDay.textContent}일`;
+            sidebar.textContent = selectedDate;
+
+            // memo textarea에 선택한 날짜 추가
+            memoTextarea.value = `${selectedDate} 메모`;
         });
     });
 }
@@ -257,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");
     updateTime();
     setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
+    generateDaysForMonth(new Date().getFullYear()); // 초기에는 한국어로 설정
     appendSelected();
     colorPickerEvent();
     colorShadowEvent();

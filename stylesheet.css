@@ -47,6 +47,7 @@ header {
     float: left;
     width: auto;
     line-height: 1;
+    width: 1000px;
     font-size: 60px;
     padding: 0;
 }

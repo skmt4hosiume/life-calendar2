@@ -281,7 +281,19 @@ main {
     background-color: #c0392b;
 }
 
+.input{
+    width: 100%;
+    height: 600px;
+    font-size: 60px;
+    resize: none;
+    margin-top: 15px;
+}
 
+.submit {
+    width: 250px;
+    height: 150px;
+    font-size: 60px;
+}
 
 .shade {
     width: 120px;

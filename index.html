@@ -59,9 +59,16 @@
                     <div class="shadow-option" id="shadow-40"></div>
                     <div class="shadow-option" id="shadow-30"></div>
                 </div>
+                <button id="reset-color" class="reset-button">색칠 삭제</button>    
+
+
+                <form name="memo">
+                    <textarea class="input" rows="10" cols="10" onclick="this.value='';">메모</textarea>
+                    <button class="submit", id="button">저장</button>
+                </form>
             </div>
 
-            <button id="reset-color" class="reset-button">색칠 삭제</button>    
+
         </sidebar>
         <main>
             <div class="indicator-date"></div>
@@ -78,7 +85,6 @@
                 <div class="month"></div>
                 <div class="month"></div>
                 <div class="month"></div>
-        
             </div>
         </main>
     </div>

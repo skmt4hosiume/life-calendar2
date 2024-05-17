@@ -181,6 +181,10 @@ function shadeCalc(color, alpha) {
 
 function setShadowColor(color) {
 
+
+    // 입력된 색상에서 RGB 값 추출
+    const rgb = hexToRgb(colorMap(color));
+
     // 각 명암 요소에 색상 적용
     document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
     document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);
@@ -232,7 +236,6 @@ function colorShadowEvent() {
         })
     })
 }
-
 // '색칠 삭제' 버튼 클릭 이벤트 함수
 function resetColorEvent() {
     const resetButton = document.getElementById('reset-color');
@@ -249,19 +252,6 @@ function resetColorEvent() {
     });
 }
 
-// 기존 함수 실행 부분에 resetColorEvent 추가
-document.addEventListener('DOMContentLoaded', () => {
-    setShadowColor("green");
-    updateTime();
-    setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); // 초기에는 한국어로 설정
-    appendSelected();
-    colorPickerEvent();
-    colorShadowEvent();
-    resetColorEvent(); // '색칠 삭제' 기능 추가
-});
-
-
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");
@@ -271,4 +261,5 @@ document.addEventListener('DOMContentLoaded', () => {
     appendSelected();
     colorPickerEvent();
     colorShadowEvent();
+    resetColorEvent();
 });

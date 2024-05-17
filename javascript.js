@@ -82,10 +82,11 @@ function appendSelected() {
             sidebar.textContent = selectedDate;
 
             // memo textarea에 선택한 날짜 추가
-            memoTextarea.value = `${selectedDate} 메모`;
         });
     });
 }
+
+
 
 // 현재 시간 나타내는 함수
 function updateTime() {
@@ -259,6 +260,34 @@ function resetColorEvent() {
     });
 }
 
+function saveTextButton() {
+    const saveButton = document.getElementById('textbutton');
+    const memoTextarea = document.querySelector('.input')
+    const selectedDay = document.getElementById('select-day');
+
+    saveButton.addEventListener('click', () => {
+        const note = memoTextarea.value;
+        localStorage.setItem(selectedDay.textContent, note)
+    })
+}
+
+function dayClickEvent() {
+    const allDays = document.querySelectorAll('.day');
+
+    allDays.forEach(day => {
+        day.addEventListener('click', () => {
+            if (day.classList.contains('selected')) {
+                const memoTextarea = document.querySelector('.input');
+                const selectedDay = document.getElementById('select-day');
+                const savedNote = localStorage.getItem(selectedDay.textContent)
+                
+                memoTextarea.value = savedNote;
+            }
+        })
+    })
+}
+
+
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");
@@ -269,4 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
     colorPickerEvent();
     colorShadowEvent();
     resetColorEvent();
+    dayClickEvent()
+    saveTextButton()
 });

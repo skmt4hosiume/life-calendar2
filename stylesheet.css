@@ -100,7 +100,7 @@ main {
 
 
 .indicator-date {
-    width: 100%;
+    width: 99.5%;
     height: 5%;
     border-bottom: 1px solid black;
     text-align: center;
@@ -108,6 +108,7 @@ main {
     font-size: 80px;
     gap: 30px;
     padding: 30px;
+    transform: translateX(-0.5%);
 }
 
 .calendar {

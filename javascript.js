@@ -237,6 +237,35 @@ function colorShadowEvent() {
     })
 }
 
+// '색칠 삭제' 버튼 클릭 이벤트 함수
+function resetColorEvent() {
+    const resetButton = document.getElementById('reset-color');
+    resetButton.addEventListener('click', () => {
+        // 선택된 날짜 요소 찾기
+        const selectedDay = document.querySelector('.day.selected');
+
+        // 선택된 날짜가 있을 경우 색상 초기화
+        if (selectedDay) {
+            selectedDay.classList.remove('color-effect');
+            selectedDay.style.backgroundColor = ''; // 배경색 초기화
+            selectedDay.dataset.constant = ''; // 데이터 초기화
+        }
+    });
+}
+
+// 기존 함수 실행 부분에 resetColorEvent 추가
+document.addEventListener('DOMContentLoaded', () => {
+    setShadowColor("green");
+    updateTime();
+    setInterval(updateTime, 1000);
+    generateDaysForMonth(new Date().getFullYear()); // 초기에는 한국어로 설정
+    appendSelected();
+    colorPickerEvent();
+    colorShadowEvent();
+    resetColorEvent(); // '색칠 삭제' 기능 추가
+});
+
+
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");

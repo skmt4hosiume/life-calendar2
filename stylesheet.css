@@ -121,13 +121,14 @@ main {
     margin: 30px;
     border: 1px solid black;
     display: grid;
-    border-radius: 10px;
+    border-top-right-radius: 10%;
+    border-top-left-radius: 10%;
     background-color: #fafafa;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .month-name {
-    width: 100%;
+    width: 70%;
     height: 120px;
     font-weight: bold;
     font-size: 80px;
@@ -135,8 +136,10 @@ main {
     border-bottom: 1px solid black;
     background-color: #3498db;
     color: #fff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+    transform: translateX(20%);
+    
 }
 
 .days-container {

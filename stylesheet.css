@@ -112,7 +112,7 @@ main {
 }
 
 .calendar {
-    height: 85%;
+    height: 93%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }

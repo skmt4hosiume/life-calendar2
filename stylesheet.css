@@ -43,14 +43,20 @@ header {
     padding: 0 50px;
 }
 
-.logo {
-    float: left;
-    width: auto;
-    line-height: 1;
-    width: 1000px;
-    font-size: 60px;
-    padding: 0;
+.logo a{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.logo img{
+   width: 200px
+}
+.logo h1{
+    font-size: 60px;
+    padding: 33px 33px;
+    margin: 0;
+}
+
 
 .nav-list {
     float: right;

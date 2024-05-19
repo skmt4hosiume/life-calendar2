@@ -346,3 +346,12 @@ footer {
     font-size: 45px;
     line-height: 200px;
 }
+
+/* about.html */
+h1#about-team {
+    font-size: 120px;
+}
+
+h1#about-info {
+    font-size: 60px;
+}

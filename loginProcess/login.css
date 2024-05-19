@@ -24,11 +24,26 @@ header {
     border-radius: 10px;
 }
 
-.logo {
-    width: auto;
-    line-height: 1;
+a {
+    color: #424242;
+    text-decoration: none;
+    transition: border-bottom 0.3s;
+}
+
+.logo a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 200px
+}
+
+.logo h1 {
     font-size: 60px;
-    padding: 0;
+    padding: 33px 33px;
+    margin: 0;
 }
 
 .nav-list {

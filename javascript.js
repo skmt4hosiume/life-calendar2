@@ -294,8 +294,6 @@ function changeFont(){
     })
 }
 
-
-
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");

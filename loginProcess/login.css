@@ -30,6 +30,14 @@ a {
     transition: border-bottom 0.3s;
 }
 
+a:hover {
+    border-bottom: 2px solid black;
+}
+
+.login-container a {
+    font-size: 50px;
+}
+
 .logo a {
     display: flex;
     justify-content: space-between;
@@ -110,6 +118,7 @@ input {
 }
 
 button {
+    margin-top: 10px;
     padding: 40px;
     border: none;
     border-radius: 4px;

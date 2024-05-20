@@ -308,4 +308,5 @@ document.addEventListener('DOMContentLoaded', () => {
     resetColorEvent();
     dayClickEvent()
     saveTextButton()
+    changeFont();
 });

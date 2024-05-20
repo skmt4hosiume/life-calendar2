@@ -47,14 +47,23 @@ header {
     display:flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration-line: none!important;
+    font-family: "Caveat", sans-serif;
 }
 .logo img{
    width: 200px
 }
 .logo h1{
-    font-size: 60px;
-    padding: 33px 33px;
-    margin: 0;
+    font-size: 130px;
+    padding: 0px 40px;
+    margin: -20px;
+    text-decoration-line: none;
+}
+.logo h2{
+    font-size: 50px;
+    padding: 33px 55px;
+    margin: 0px;
+    text-decoration-line: none;
 }
 
 

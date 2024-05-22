@@ -98,6 +98,17 @@ h1#about-info, h1#about-github{
     font-size: 60px;
 }
 
+.manual-container {
+    box-sizing: content-box;
+    background-color: #f1f0f0;
+    padding: 25px 10px;
+    width: 2500px;
+    margin: auto;
+}
+
+h1#manual-name, li#manual {
+    font-size: 60px;
+}
 
 footer {
     width: 100%;

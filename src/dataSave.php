@@ -9,7 +9,7 @@ require 'config.php';
 $user_id = $_SESSION['user_id'];
 
 // 기존 데이터 가져오기 준비
-$sql_select = "SELECT colordata FROM info WHERE id = ?";
+$sql_select = "SELECT colordata FROM member WHERE id = ?";
 $stmt_select = mysqli_prepare($con, $sql_select);
 
 // 바인딩 및 실행
@@ -56,7 +56,7 @@ foreach ($uniqueData as $key => $value) {
 
 
 // colordata 업데이트
-$sql_update = "UPDATE info SET colordata = ? WHERE id = ?";
+$sql_update = "UPDATE member SET colordata = ? WHERE id = ?";
 $stmt_update = mysqli_prepare($con, $sql_update);
 
 if (!$stmt_update) {

@@ -18,7 +18,7 @@ if ($password1 !== $password2) {
 $password1 = password_hash($password1, PASSWORD_DEFAULT);
 
 // id 중복체크
-$sql_same = "select * from info where id = '$user_id'";
+$sql_same = "select * from member where id = '$user_id'";
 $order = mysqli_query($con, $sql_same);
 
 if (mysqli_num_rows($order) > 0) {
@@ -26,7 +26,7 @@ if (mysqli_num_rows($order) > 0) {
     exit();
 }
 else {
-    $sql_save = "INSERT INTO `info`(`id`, `password`) VALUES ('$user_id','$password1')";
+    $sql_save = "INSERT INTO `member`(`id`, `password`) VALUES ('$user_id','$password1')";
     $result = mysqli_query($con, $sql_save);
 
     if ($result) {

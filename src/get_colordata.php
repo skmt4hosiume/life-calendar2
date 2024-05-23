@@ -9,7 +9,7 @@ require 'config.php';
 $user_id = $_SESSION['user_id'];
 
 // 사용자의 colordata 조회
-$sql_select = "SELECT colordata FROM info WHERE id = ?";
+$sql_select = "SELECT colordata FROM member WHERE id = ?";
 $stmt_select = mysqli_prepare($con, $sql_select);
 
 // 바인딩 및 실행

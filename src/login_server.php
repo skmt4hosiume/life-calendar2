@@ -8,7 +8,7 @@ include 'config.php';
 $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
 $password = mysqli_real_escape_string($con, $_POST['password']);
 
-$sql_same = "select * from info where id = '$user_id'";
+$sql_same = "select * from member where id = '$user_id'";
 $order = mysqli_query($con, $sql_same);
 
 // 아이디가 없으면

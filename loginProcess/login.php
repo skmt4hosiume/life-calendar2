@@ -5,34 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 창</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poetsen+One&display=swap" rel="stylesheet">
-    <script src="javascript.js"></script>
 </head>
 <body>
     <header>
         <div class="logo">
             <a href="">
                 <img class="logo_img" src="../image/아이콘.png" alt="로고 이미지">
-                 <div>
-                    <h1> DayDream</h1>
-                    <h2> Capture Your Moment </h2>
-                    </div>
-                </a>
-            </div>
+                <h1> DayDream<br> Capture Your Moment </h1>
+            </a>
     </header>
 
     <div class="login-container">
         <h2>로그인</h2>
-        <form action="/login" method="post">
+        
+        <?php if(isset($_GET['error'])) {?>
+        <p class="error"><?php echo $_GET['error']; ?></p>
+        <?php } ?>
+
+        <form action="../src/login_server.php" method="post">
             <label for="username">아이디</label>
-            <input type="text" id="id" name="username" required>
+            <input type="text" id="id" name="user_id" required>
             
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" required>
-            <a href="register.html">회원정보가 없으신가요?</a>
+            <a href="register.php">회원정보가 없으신가요?</a>
             <a href="newpassword.html">비밀번호를 까먹으셨나요?</a>
             <button type="submit">로그인</button>
         </form>
@@ -48,7 +44,7 @@
                 |
                 <a href="">서비스 약관</a>
                 |
-                <a href="../contact.html">연락처</a>
+                <a href="">연락처</a>
             </p>
         </div>
         </div>

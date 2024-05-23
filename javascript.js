@@ -47,6 +47,7 @@ function generateDaysForMonth(year) {
             const dayDiv = document.createElement('div');
             dayDiv.className = 'day';
             dayDiv.textContent = day;
+            dayDiv.id = `${index + 1}-${day}`; // id 값을 "월-일" 형식으로 설정
             dayDiv.dataset.constant = '';
             daysContainer.appendChild(dayDiv);
         }
@@ -83,8 +84,6 @@ function appendSelected() {
     });
 }
 
-
-
 // 현재 시간 나타내는 함수
 function updateTime() {
     const now = new Date();
@@ -92,30 +91,13 @@ function updateTime() {
     const year = now.getFullYear();
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const date = now.getDate().toString().padStart(2, '0');
-
-    let ampm = '오전';
-    let formattedHours = hours;
-    if (hours >= 12) {
-        ampm = '오후';
-        formattedHours = (hours % 12) || 12;
-    }
-
+    const ampm = hours >= 12 ? '오후' : '오전';
+    const formattedHours = (hours % 12) || 12;
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const seconds = now.getSeconds().toString().padStart(2, '0');
 
     const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일`;
     document.querySelector('.indicator-date').innerText = timeString;
-
-    backgroundColor(hours); // 배경색 업데이트
-}
-
-//시간에 따라 배경 변경(오전 6시~ 오후6시까지)
-function backgroundColor(hour) {
-    if (hour >= 6 && hour < 18) {
-        document.body.style.backgroundColor = "white"; // 오전 6시부터 오후 6시까지 흰색 배경색
-    } else {
-        document.body.style.backgroundColor = "lightgrey"; // 그 외 시간에는 회색 배경색
-    }
 }
 
 //캘린더에 색깔 부여하는 함수
@@ -185,11 +167,6 @@ function shadeCalc(color, alpha) {
 }
 
 function setShadowColor(color) {
-
-
-    // 입력된 색상에서 RGB 값 추출
-    const rgb = hexToRgb(colorMap(color));
-
     // 각 명암 요소에 색상 적용
     document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
     document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);
@@ -241,6 +218,7 @@ function colorShadowEvent() {
         })
     })
 }
+
 // '색칠 삭제' 버튼 클릭 이벤트 함수
 function resetColorEvent() {
     const resetButton = document.getElementById('reset-color');
@@ -253,8 +231,27 @@ function resetColorEvent() {
             selectedDay.classList.remove('color-effect');
             selectedDay.style.backgroundColor = ''; // 배경색 초기화
             selectedDay.dataset.constant = ''; // 데이터 초기화
+            removeColorToPHP(selectedDay.id); // 색칠 삭제시 데이터베이스에도 반영해야함
         }
     });
+}
+
+// 데이터베이스에 있는 색깔 정보 삭제
+function removeColorToPHP(delete_id) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'src/remove_color.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(delete_id); // remove_color.php로 delete_id 데이터 전송
+
+    // 이 부분은 콘솔, 디버깅 용도
+    xhr.onreadystatechange = () => {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText);
+        } else {
+            console.log("음..? 보내졌나?");
+        }
+    }
 }
 
 function saveTextButton() {
@@ -294,12 +291,99 @@ function changeFont(){
     })
 }
 
+// 로그인 여부에 따라 헤더 부분에 표기
+function AJAXRequest() {
+    // AJAX 요청으로 로그인 상태 확인
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'src/check_login.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.logged_in) {
+                document.getElementById('logout-item').style.display = 'inline';
+                loadInfomation();
+            } else {
+                document.getElementById('login-item').style.display = 'inline';
+                document.getElementById('register-item').style.display = 'inline';
+            }
+        }
+    };
+    xhr.send();
+}
+
+// 날짜 색깔 저장하는 함수 (웹페이지 닫거나 새로고침 시 DB에 반영)
+function dayColorSave() {
+    function saveData() {
+        const dayColorEffectElements = document.querySelectorAll('.day.color-effect');
+        const dataArray = [];
+
+        // dataArray 형식
+        // [ {id : {shade, backgroundcolor}, {id : {shade, backgroundcolor} ... }]
+        dayColorEffectElements.forEach(element => {
+            const data = {
+                [element.id]: {
+                    shade: element.dataset.constant,
+                    backgroundcolor: element.style.backgroundColor
+                }
+            };
+            dataArray.push(data);
+        });
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", 'src/dataSave.php', true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.send(JSON.stringify(dataArray)); //stringify = 문자열로 변환하는 메소드
+
+        // 이 부분은 콘솔, 디버깅 용도
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) { //xhr.status = 200 : 요청이 성공적으로 처리되면 200값을 가짐 
+                    console.log(xhr.responseText);
+                } else {
+                    console.log("음..? 보내졌나?");
+                }
+            }
+        }
+    }
+
+    // 페이지를 떠나기 전에 데이터 저장
+    window.addEventListener('beforeunload', saveData);
+}
+
+// 페이지 열때 정보 불러오기 
+function loadInfomation() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'src/get_colordata.php', true); //get_colordata.php를 이용해 데이터 불러오기
+    xhr.onload = function () {
+        if (xhr.status === 200 && xhr.responseText !== "") {
+            // xhr.responseText = 각 날짜의 id, data.constant, backgroundcolor의 정보가 담긴 배열
+            var colordata = JSON.parse(xhr.responseText);
+            loadDayColor(colordata);
+        }
+    };
+    xhr.send();
+}
+
+// 파라미터로 받은 값을 이용해 날짜에 정보 반영
+function loadDayColor(colordata) {
+    colordata.forEach(element => {
+        for (const key in element) {
+            const day = document.getElementById(key);
+            const values = element[key];
+            day.dataset.constant = values.shade;
+            day.style.backgroundColor = values.backgroundcolor;
+            day.classList.add('color-effect');
+        }
+    })
+}
+
+
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
-    setShadowColor("green");
+    setShadowColor("green"); // 초기값은 green
     updateTime();
     setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); // 초기에는 한국어로 설정
+    generateDaysForMonth(new Date().getFullYear()); 
     appendSelected();
     colorPickerEvent();
     colorShadowEvent();
@@ -307,4 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dayClickEvent()
     saveTextButton()
     changeFont();
+    AJAXRequest();
+    dayColorSave();
 });
+

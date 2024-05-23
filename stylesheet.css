@@ -50,15 +50,18 @@ header {
     text-decoration-line: none!important;
     font-family: "Caveat", sans-serif;
 }
+
 .logo img{
    width: 200px
 }
+
 .logo h1{
     font-size: 130px;
     padding: 0px 40px;
     margin: -20px;
     text-decoration-line: none;
 }
+
 .logo h2{
     font-size: 50px;
     padding: 33px 55px;
@@ -354,4 +357,13 @@ footer {
     text-align: center;
     font-size: 45px;
     line-height: 200px;
+
+}
+
+h1#about-team {
+    font-size: 120px;
+}
+
+h1#about-info {
+    font-size: 60px;
 }

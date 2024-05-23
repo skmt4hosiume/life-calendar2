@@ -27,16 +27,19 @@
         <div class="nav-container">
             <ul class="nav-list">
                 <li>
-                    <a href="/">Home</a>
+                    <a href="">Home</a>
                 </li>
                 <li>
                     <a href="about.html">ABOUT</a>
                 </li>
-                <li>
-                    <a href="loginProcess/login.html">로그인</a>
+                <li id="login-item" style="display: none;">
+                    <a href="loginProcess/login.php">로그인</a>
                 </li>
-                <li>
-                    <a href="loginProcess/register.html">회원가입</a>
+                <li id="register-item" style="display: none;">
+                    <a href="loginProcess/register.php">회원가입</a>
+                </li>
+                <li id="logout-item" style="display: none;">
+                    <a href="src/logout_server.php">로그아웃</a>
                 </li>
             </ul>
         </div>

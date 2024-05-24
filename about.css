@@ -106,8 +106,17 @@ h1#about-info, h1#about-github{
     margin: auto;
 }
 
-h1#manual-name, li#manual {
+h1#manual-name{
     font-size: 60px;
+}
+
+li#manual {
+    font-size: 60px;
+    margin: 0;
+}
+
+ol#manual-ol {
+    margin-left: 50px;
 }
 
 footer {

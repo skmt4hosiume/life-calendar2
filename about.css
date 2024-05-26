@@ -110,13 +110,16 @@ h1#manual-name{
     font-size: 60px;
 }
 
-li#manual {
-    font-size: 60px;
-    margin: 0;
+ol#manual-ol {
+    list-style-position: inside;
+    padding-left: 20px;
+    margin-left: 0;
 }
 
-ol#manual-ol {
-    margin-left: 50px;
+li#manual {
+    margin-left: 0;
+    padding-left: 20px;
+    font-size: 60px;
 }
 
 footer {

@@ -291,6 +291,30 @@ function changeFont(){
     })
 }
 
+function changeTheme() {
+    const header = document.querySelector('.header');
+    const sidebar = document.querySelector('.sidebar');
+    const footer = document.querySelector('.footer');
+    const monthNameAll = document.querySelectorAll('.month');
+    const themeOptionAll = document.querySelectorAll('.theme-option');
+
+    themeOptionAll.forEach(themeOption => {
+        themeOption.addEventListener('click', () => {
+            const themeColor = themeOption.id;
+            console.log(themeColor);
+            header.id = themeColor;
+            sidebar.id = themeColor;
+            footer.id = themeColor;
+            monthNameAll.forEach(monthName => {
+                monthName.id = themeColor;
+            })
+
+        })
+    })
+}
+
+
+
 // 로그인 여부에 따라 헤더 부분에 표기
 function AJAXRequest() {
     // AJAX 요청으로 로그인 상태 확인
@@ -390,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resetColorEvent();
     dayClickEvent()
     saveTextButton()
+    changeTheme()
     changeFont();
     AJAXRequest();
     dayColorSave();

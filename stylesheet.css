@@ -112,7 +112,7 @@ main {
     border-bottom: 1px solid black;
     text-align: center;
     line-height: 30px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .calendar {
@@ -150,8 +150,6 @@ main {
     grid-gap: 2px;
     padding: 9px;
     background-color: #ffffff;
-    transition: background-color 0.3s, color 0.3s;
-    
 }
 
 .day {
@@ -215,6 +213,38 @@ main {
     background-color: gray;
 }
 
+#pastel-blue {
+    background-color: #AEC6CF;
+}
+
+#pastel-plum {
+    background-color: #E3D3E3;
+}
+
+#pastel-peach {
+    background-color: #FFDAC1;
+}
+
+#pastel-mint {
+    background-color: #E2F0CB;
+}
+
+#pastel-skyblue {
+    background-color: #C4E2FF;
+}
+
+#pastel-lemon {
+    background-color: #FFFACD;
+}
+
+#pastel-rose {
+    background-color: #F7C6C7;
+}
+
+#pastel-lime {
+    background-color: #C1FFC1;
+}
+
 .select-color-container {
     width: 100%;
     height: 50px;
@@ -233,7 +263,7 @@ main {
 .select-color-container .selected-color {
     width: 35px;
     height: 35px;
-    border: 3px solid black;
+    border: 4px solid black;
     border-radius: 50%;
     background-color: green;
 }
@@ -322,6 +352,34 @@ main {
     height: 120px;
     margin: 0 5px;
 }
+
+.select-theme-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.color-theme {
+    clear: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    border-bottom: 1px solid black;
+}
+
+.theme-option {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    cursor: pointer;
+    border: 4px solid #000000;
+    border-radius: 5px
+}
+
+
 
 
 footer {

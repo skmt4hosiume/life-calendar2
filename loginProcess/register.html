@@ -6,15 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 창</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poetsen+One&display=swap"rel="stylesheet">
+    <script src="login.js"></script>
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <div class="logo">
             <a href="../index.html">
                 <img class="logo_img" src="../image/아이콘.png" alt="로고 이미지">
                 <h1> DayDream<br> Capture Your Moment </h1>
             </a>
+        </div>
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li>
+                    <a href="../">Home</a>
+                </li>
+                <li>
+                    <a href="../about.html">ABOUT</a>
+                </li>
+            </ul>
+        </div>
     </header>
 
     <div class="login-container">
@@ -37,26 +52,10 @@
 
             <label for="password">비밀번호 확인</label>
             <input type="password" id="password" name="password2" required>
-            <a href="login.php">이미 회원이신가요?</a>
+            <a href="login.html">이미 회원이신가요?</a>
             <button type="submit">회원가입</button>
         </form>
     </div>
-
-    <footer>
-        <div class="footer-container">
-            <p>
-                © 2024 All Rights Reserved.
-                <a href="">개인정보 보호</a>
-                |
-                <a href="">도움말</a>
-                |
-                <a href="">서비스 약관</a>
-                |
-                <a href="">연락처</a>
-            </p>
-        </div>
-        </div>
-    </footer>
 </body>
 
 </html>

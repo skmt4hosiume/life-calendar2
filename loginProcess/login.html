@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 창</title>
     <link rel="stylesheet" href="login.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poetsen+One&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poetsen+One&display=swap"rel="stylesheet">
+    <script src="login.js"></script>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="logo">
-            <a href="">
+            <a href="../index.html">
                 <img class="logo_img" src="../image/아이콘.png" alt="로고 이미지">
                 <h1> DayDream<br> Capture Your Moment </h1>
             </a>
@@ -20,10 +21,10 @@
         <div class="nav-container">
             <ul class="nav-list">
                 <li>
-                    <a href="../">Home</a>
+                    <a href="../index.html">Home</a>
                 </li>
                 <li>
-                    <a href="about.html">ABOUT</a>
+                    <a href="../about.html">ABOUT</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +43,7 @@
             
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" required>
-            <a href="register.php">회원정보가 없으신가요?</a>
+            <a href="register.html">회원정보가 없으신가요?</a>
             <a href="newpassword.html">비밀번호를 까먹으셨나요?</a>
             <button type="submit">로그인</button>
         </form>

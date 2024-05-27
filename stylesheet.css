@@ -12,7 +12,7 @@ a {
     transition: border-bottom 0.3s;
 }
 
-a:hover {
+li a:hover, p a:hover {
     border-bottom: 2px solid black;
 }
 

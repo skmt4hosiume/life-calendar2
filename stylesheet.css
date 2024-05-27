@@ -1,8 +1,8 @@
 body {
-    max-width: 4800px;
-    min-width: 4800px;
+    max-width: 1200px;
+    min-width: 1200px;
     margin: auto;
-    background-color: #f0f0f0;
+    background-color: #cbcbcb;
     font-family: Arial, sans-serif;
 }
 
@@ -21,7 +21,6 @@ sidebar,
 main,
 footer {
     box-sizing: border-box;
-    font-size: 30px;
     font-weight: bold;
     border: 2px solid black;
     background-color: #fff;
@@ -33,14 +32,13 @@ footer {
 
 header {
     width: 100%;
-    height: 300px;
+    height: 75px;
     background-color: #3498db;
     color: #fff;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
 }
 
 .logo a{
@@ -52,23 +50,14 @@ header {
 }
 
 .logo img{
-   width: 200px
+   width: 50px
 }
 
 .logo h1{
-    font-size: 130px;
-    padding: 0px 40px;
-    margin: -20px;
+    font-size: 20px;
+    padding: 30px auto;
     text-decoration-line: none;
 }
-
-.logo h2{
-    font-size: 50px;
-    padding: 33px 55px;
-    margin: 0px;
-    text-decoration-line: none;
-}
-
 
 .nav-list {
     float: right;
@@ -76,13 +65,13 @@ header {
 
 .nav-list li {
     display: inline;
-    margin: 0 30px;
-    font-size: 50px;
+    margin: 0 20px;
+    font-size: 15px;
 }
 
 sidebar {
     width: 20%;
-    height: 4000px;
+    height: 1000px;
     float: left;
     background-color: #f8f9fa;
     border-right: 2px solid #e0e0e0;
@@ -110,7 +99,7 @@ sidebar {
 
 main {
     width: calc(80% - 30px);
-    height: 4000px;
+    height: 1000px;
     float: right;
 }
 
@@ -118,25 +107,22 @@ main {
 
 
 .indicator-date {
-    width: 99.5%;
+    width: 100%;
     height: 5%;
     border-bottom: 1px solid black;
     text-align: center;
-    line-height: 160px;
-    font-size: 80px;
-    gap: 30px;
-    padding: 30px;
-    transform: translateX(-0.5%);
+    line-height: 30px;
+    font-size: 30px;
 }
 
 .calendar {
-    height: 93%;
+    height: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .month {
-    margin: 30px;
+    margin: 10px;
     border: 1px solid black;
     display: grid;
     border-top-right-radius: 10%;
@@ -147,9 +133,9 @@ main {
 
 .month-name {
     width: 100%;
-    height: 120px;
+    height: 30px;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 20px;
     text-align: center;
     border-bottom: 1px solid black;
     /* background-color: #3498db; */
@@ -160,9 +146,9 @@ main {
 .days-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5, minmax(120px, 1fr));
-    grid-gap: 10px;
-    padding: 36px;
+    grid-template-rows: repeat(5, minmax(30px, 1fr));
+    grid-gap: 2px;
+    padding: 9px;
     background-color: #ffffff;
     transition: background-color 0.3s, color 0.3s;
     
@@ -171,11 +157,10 @@ main {
 .day {
     border: 1px solid black;
     text-align: center;
-    font-size: 50px;
-    padding: 10px;
-    line-height: 95px;
+    font-size: 15px;
+    padding: 5px;
+    line-height: 15px;
     border-radius: 15%;
-    
 }
 
 .day:hover {
@@ -191,11 +176,9 @@ main {
     background-color: green;
 }
 
-
-
 #select-day {
     text-align: center;
-    font-size: 100px;
+    font-size: 25px;
 }
 
 
@@ -234,7 +217,7 @@ main {
 
 .select-color-container {
     width: 100%;
-    height: 200px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,15 +225,15 @@ main {
 }
 
 .select-color-container .text {
-    font-size: 80px;
-    padding-right: 50px;
+    font-size: 20px;
+    padding-right: 15px;
     float: left;
 }
 
 .select-color-container .selected-color {
-    width: 150px;
-    height: 150px;
-    border: 10px solid black;
+    width: 35px;
+    height: 35px;
+    border: 3px solid black;
     border-radius: 50%;
     background-color: green;
 }
@@ -264,17 +247,17 @@ main {
 }
 
 .color-option {
-    width: 150px;
-    height: 150px;
-    margin: 30px;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
     cursor: pointer;
-    border: 10px solid #000000;
-    border-radius: 20px
+    border: 5px solid #000000;
+    border-radius: 5px
 }
 
 .color-shadow {
     width: 100%;
-    height: 200px;
+    height: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     place-items: center;
@@ -282,24 +265,24 @@ main {
 }
 
 .color-shadow * {
-    width: 150px;
-    height: 150px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    border: 10px solid #000000;
-    border-radius: 20px
+    border: 5px solid #000000;
+    border-radius: 5px
 }
 
 .reset-button {
     width: 100%;
-    height: 100px;
+    height: 25px;
     background-color: #e74c3c;
     color: #fff;
     border: none;
-    font-size: 40px;
+    font-size: 10px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 10px;
-    margin-top: 30px;
+    border-radius: 5px;
+    margin-top: 8px;
     transition: background-color 0.3s;
 }
 
@@ -309,30 +292,29 @@ main {
 
 .input{
     width: 100%;
-    height: 600px;
-    font-size: 60px;
+    height: 150px;
+    font-size: 15px;
     resize: none;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .submit {
-    width: 250px;
-    height: 150px;
-    font-size: 60px;
+    width: 25%;
+    height: 30px;
+    font-size: 15px;
 }
 
 .Font{
-    width: 250px;
-    height: 150px;
-    font-size: 50px;
-    padding-top: 1%;
+    width: 40%;
+    height: 30px;
+    font-size: 15px;
 }
 
 
 .fontSelect{
-    width: 300px;
-    height: 120px;
-    font-size: 50px;
+    width: 30%;
+    height: 30px;
+    font-size: 15px;
 }
 
 .shade {
@@ -344,7 +326,7 @@ main {
 
 footer {
     width: 100%;
-    height: 300px;
+    height: 75px;
     clear: both;
     background-color: #3498db;
     color: #fff;
@@ -355,15 +337,6 @@ footer {
 
 .footer-container {
     text-align: center;
-    font-size: 45px;
-    line-height: 200px;
-
-}
-
-h1#about-team {
-    font-size: 120px;
-}
-
-h1#about-info {
-    font-size: 60px;
+    font-size: 15px;
+    line-height: 50px;
 }

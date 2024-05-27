@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도움말</title>
-    <link rel="stylesheet" href="contact.css">
-    <script src="help.js"></script>
+    <link rel="stylesheet" href="css/help.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poetsen+One&display=swap"rel="stylesheet">
+    <script src="javascript/help.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img class="logo_img" src="../image/아이콘.png" alt="로고 이미지">
-                    <h1> DayDream<br> Capture Your Moment </h1>
-                </a>
-            </div>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">ABOUT</a></li>
-                    <li><a href="login.html">로그인</a></li>
-                    <li><a href="/">회원가입</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img class="logo_img" src="../image/아이콘.png" alt="로고 이미지">
+                <h1> DayDream <br> Capture Your Moment </h1>
+            </a>
+        </div>
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li>
+                    <a href="../">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">ABOUT</a>
+                </li>
+                <li id="login-item" style="display: inline;">
+                    <a href="loginProcess/login.html">로그인</a>
+                </li>
+                <li id="register-item" style="display: inline;">
+                    <a href="loginProcess/register.html">회원가입</a>
+                </li>
+                <li id="logout-item" style="display: none;">
+                    <a href="src/logout_server.html">로그아웃</a>
+                </li>
+            </ul>
         </div>
     </header>
 
@@ -62,7 +74,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="footer">
         <div class="footer-container">
             <p>
                 © 2024 All Rights Reserved.

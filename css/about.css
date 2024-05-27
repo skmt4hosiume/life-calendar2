@@ -34,7 +34,6 @@ header {
     width: 100%;
     height: 75px;
     background-color: #3498db;
-    color: #fff;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
@@ -113,14 +112,11 @@ li#manual {
     font-size: 15px;
 }
 
-
-
 footer {
     width: 100%;
     height: 75px;
     clear: both;
     background-color: #3498db;
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;

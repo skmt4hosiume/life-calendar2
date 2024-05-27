@@ -6,7 +6,6 @@ function changeTheme() {
     footer.style.backgroundColor = themeColor;
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     changeTheme();
 });

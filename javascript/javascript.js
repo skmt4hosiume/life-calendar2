@@ -291,13 +291,21 @@ function changeFont(){
     })
 }
 
+// 테마 바꾸는 함수
 function changeTheme() {
     const header = document.querySelector('.header');
     const sidebar = document.querySelector('.sidebar');
     const footer = document.querySelector('.footer');
     const monthNameAll = document.querySelectorAll('.month');
     const themeOptionAll = document.querySelectorAll('.theme-option');
-    localStorage.setItem("theme", window.getComputedStyle(header).backgroundColor);
+    
+    const themeValue = localStorage.getItem("theme");
+
+    if (!themeValue) {
+        localStorage.setItem("theme", window.getComputedStyle(header).backgroundColor);
+    }
+    
+    firstStartTheme(localStorage.getItem("theme"));
 
     themeOptionAll.forEach(themeOption => {
         themeOption.addEventListener('click', () => {
@@ -315,6 +323,20 @@ function changeTheme() {
     })
 }
 
+// 저장된 테마 색깔을 최소 한번 적용하는걸 실행시키는 함수
+function firstStartTheme(color) {
+    const header = document.querySelector('.header');
+    const sidebar = document.querySelector('.sidebar');
+    const footer = document.querySelector('.footer');
+    const monthNameAll = document.querySelectorAll('.month');
+
+    header.style.backgroundColor = color;
+    sidebar.style.backgroundColor = color;
+    footer.style.backgroundColor = color;
+    monthNameAll.forEach(monthName => {
+        monthName.style.backgroundColor = color;
+    })
+}
 
 
 // 로그인 여부에 따라 헤더 부분에 표기

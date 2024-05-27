@@ -330,11 +330,14 @@ main {
 }
 
 .input{
-    width: 100%;
+    width: 98%;
     height: 150px;
     font-size: 15px;
     resize: none;
     margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 .submit {
@@ -349,11 +352,17 @@ main {
     font-size: 15px;
 }
 
+.submit:hover, .Font:hover {
+    background-color: #bcbcbc;
+}
+
 
 .fontSelect{
     width: 30%;
     height: 30px;
     font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 .shade {

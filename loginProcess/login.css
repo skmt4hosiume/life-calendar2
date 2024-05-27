@@ -1,27 +1,32 @@
 body {
-    max-width: 4800px;
-    min-width: 4800px;
+    max-width: 600px;
+    min-width: 600px;
     margin: auto;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
 }
 
+header,
+footer {
+    box-sizing: border-box;
+    font-weight: bold;
+    border: 2px solid black;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
 header {
     width: 100%;
-    height: 300px;
-    background-color: #3498db;
+    height: 75px;
+    background-color: #E3FDFD;
     color: #fff;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
-    box-sizing: border-box;
-    font-size: 30px;
-    font-weight: bold;
-    border: 2px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
 }
 
 .error {
@@ -47,80 +52,63 @@ header {
     background-color: rgb(215, 255, 207);
 }
 
+
 a {
     color: #424242;
     text-decoration: none;
     transition: border-bottom 0.3s;
 }
 
-a:hover {
+li a:hover,
+p a:hover {
     border-bottom: 2px solid black;
 }
 
-.login-container a {
-    font-size: 50px;
-}
-
-.logo a{
-    display:flex;
+.logo a {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    text-decoration-line: none!important;
+    text-decoration-line: none !important;
     font-family: "Caveat", sans-serif;
 }
-.logo img{
-   width: 200px
+
+.logo img {
+    width: 50px
 }
-.logo h1{
-    font-size: 130px;
-    padding: 0px 40px;
-    margin: -20px;
+
+.logo h1 {
+    font-size: 20px;
+    padding: 30px auto;
     text-decoration-line: none;
 }
-.logo h2{
-    font-size: 50px;
-    padding: 33px 55px;
-    margin: 0px;
-    text-decoration-line: none;
-}
+
 .nav-list {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    float: right;
 }
 
 .nav-list li {
-    margin: 0 30px;
-    font-size: 50px;
+    display: inline;
+    margin: 0 20px;
+    font-size: 15px;
 }
 
-.nav-list li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav-list li a:hover {
-    border-bottom: 2px solid black;
-}
 
 .login-container {
     background-color: #fff;
-    padding: 100px 50px;
+    padding: 10px 5px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 2800px;
+    height: 400px;
     box-sizing: border-box;
     text-align: center;
-    margin-bottom: 30px;
     border: 2px solid black;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #333;
-    font-size: 48px;
+    font-size: 24px;
 }
 
 form {
@@ -130,55 +118,34 @@ form {
 }
 
 label {
-    margin-bottom: 40px;
+    margin-bottom: 5px;
     color: #555;
     text-align: left;
-    font-size: 48px;
-    width: 80%;
+    font-size: 12px;
+    width: 84%;
 }
 
 input {
-    margin-bottom: 40px;
-    padding: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 48px;
+    font-size: 12px;
     width: 80%;
 }
 
 button {
     margin-top: 10px;
-    padding: 40px;
+    padding: 10px;
     border: none;
     border-radius: 4px;
     background-color: #007BFF;
     color: white;
     cursor: pointer;
-    font-size: 48px;
+    font-size: 12px;
     width: 50%;
 }
 
 button:hover {
     background-color: #0056b3;
-}
-
-footer {
-    width: 100%;
-    height: 300px;
-    background-color: #3498db;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-    box-sizing: border-box;
-    border: 2px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.footer-container {
-    text-align: center;
-    font-size: 45px;
-    line-height: 200px;
 }

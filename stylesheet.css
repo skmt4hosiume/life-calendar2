@@ -157,7 +157,7 @@ main {
     text-align: center;
     font-size: 15px;
     padding: 5px;
-    line-height: 15px;
+    line-height: 100%;
     border-radius: 15%;
 }
 
@@ -243,6 +243,22 @@ main {
 
 #pastel-lime {
     background-color: #C1FFC1;
+}
+
+#pastel-skylime {
+    background-color: #E0FBE2;
+}
+
+#pastel-brightblue {
+    background-color: #E3FDFD;
+}
+
+#pastel-powderblue {
+    background-color: #D2DAFF;
+}
+
+#pastel-beige {
+    background-color: #C8B6A6;
 }
 
 .select-color-container {
@@ -355,10 +371,12 @@ main {
 
 .select-theme-container {
     width: 100%;
-    height: 50px;
+    margin-top: 10px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 

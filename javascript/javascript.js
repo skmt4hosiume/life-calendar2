@@ -84,7 +84,6 @@ function appendSelected() {
     });
 }
 
-// 현재 시간 나타내는 함수
 function updateTime() {
     const now = new Date();
     const hours = now.getHours();
@@ -96,7 +95,10 @@ function updateTime() {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const seconds = now.getSeconds().toString().padStart(2, '0');
 
-    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일`;
+    const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    const dayOfWeek = daysOfWeek[now.getDay()];
+
+    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일 ${dayOfWeek}`;
     document.querySelector('.indicator-date').innerText = timeString;
 }
 

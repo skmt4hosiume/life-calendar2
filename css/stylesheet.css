@@ -33,7 +33,7 @@ footer {
 header {
     width: 100%;
     height: 75px;
-    background-color: #E3FDFD;
+    background-color: #e1eaff;
     color: #fff;
     margin-bottom: 30px;
     display: flex;
@@ -73,7 +73,7 @@ sidebar {
     width: 20%;
     height: 1000px;
     float: left;
-    background-color: #E3FDFD;
+    background-color: #e1eaff;
     margin-bottom: 30px;
     margin-right: 30px;
 }
@@ -117,34 +117,37 @@ main {
 
 .month {
     margin: 10px;
-    border: 1px solid black;
     display: grid;
-    border-top-right-radius: 10%;
-    border-top-left-radius: 10%;
-    background-color:  #E3FDFD;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .month-name {
+    box-sizing: border-box;
     width: 100%;
     height: 30px;
+    border: 2px solid black;
+    background-color:  #e1eaff;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-radius: 5px 5px 0 0;
 }
 
 .days-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, minmax(30px, 1fr));
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
     grid-gap: 2px;
     padding: 9px;
     background-color: #ffffff;
+    border-radius: 0 0 5px 5px;
 }
 
 .day {
-    border: 1px solid black;
+    border: 2px solid black;
     text-align: center;
     font-size: 15px;
     padding: 5px;
@@ -203,7 +206,7 @@ main {
 }
 
 #pastel-blue {
-    background-color: #BED7DC;
+    background-color: #e1eaff;
 }
 
 #pastel-plum {
@@ -401,7 +404,7 @@ footer {
     width: 100%;
     height: 75px;
     clear: both;
-    background-color: #E3FDFD;
+    background-color: #e1eaff;
     display: flex;
     align-items: center;
     justify-content: center;

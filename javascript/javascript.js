@@ -296,7 +296,7 @@ function changeTheme() {
     const header = document.querySelector('.header');
     const sidebar = document.querySelector('.sidebar');
     const footer = document.querySelector('.footer');
-    const monthNameAll = document.querySelectorAll('.month');
+    const monthNameAll = document.querySelectorAll('.month-name');
     const themeOptionAll = document.querySelectorAll('.theme-option');
     
     const themeValue = localStorage.getItem("theme");
@@ -328,7 +328,7 @@ function firstStartTheme(color) {
     const header = document.querySelector('.header');
     const sidebar = document.querySelector('.sidebar');
     const footer = document.querySelector('.footer');
-    const monthNameAll = document.querySelectorAll('.month');
+    const monthNameAll = document.querySelectorAll('.month-name');
 
     header.style.backgroundColor = color;
     sidebar.style.backgroundColor = color;

@@ -294,6 +294,18 @@ main {
     border-radius: 5px
 }
 
+.color-option:hover, 
+.shadow-option:hover,
+.theme-option:hover {
+    border: 4px solid rgb(255, 255, 255);
+}
+
+.color-option:active,
+.shadow-option:active,
+.theme-option:active {
+    transform: scale(0.8);
+}
+
 .color-shadow {
     width: 100%;
     height: 50px;

@@ -19,7 +19,7 @@ $result_select = mysqli_stmt_execute($stmt_select);
 if (!$result_select) {
     // 실행에 실패한 경우 == 로그인을 안한 상태인 경우
     echo json_encode(["status" => "error", "message" => "Failed to execute statement: " . mysqli_error($con)]);
-    exit;
+    exit();
 }
 
 // 기존 데이터 가져오기

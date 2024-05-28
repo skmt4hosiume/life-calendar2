@@ -35,13 +35,13 @@
     <div class="login-container">
         <h2>회원가입</h2>
 
-        <!-- <?php if(isset($_GET['error'])) {?>
+        <?php if(isset($_GET['error'])) {?>
         <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>
 
         <?php if(isset($_GET['success'])) {?>
         <p class="success"><?php echo $_GET['success']; ?></p>
-        <?php } ?> -->
+        <?php } ?>
 
         <form action="../src/register_server.php" method="post">
             <label for="username">아이디</label>

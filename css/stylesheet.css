@@ -9,7 +9,6 @@ body {
 a {
     color: #424242;
     text-decoration: none;
-    transition: border-bottom 0.3s;
 }
 
 li a:hover, p a:hover {
@@ -211,7 +210,7 @@ main {
 }
 
 #pastel-plum {
-    background-color: #E3D3E3;
+    background-color: #ffe6ff;
 }
 
 #pastel-peach {
@@ -231,7 +230,7 @@ main {
 }
 
 #pastel-rose {
-    background-color: #F7C6C7;
+    background-color: #fcd0d0;
 }
 
 #pastel-lime {
@@ -247,7 +246,7 @@ main {
 }
 
 #pastel-powderblue {
-    background-color: #D2DAFF;
+    background-color: #d6ddff;
 }
 
 #pastel-beige {

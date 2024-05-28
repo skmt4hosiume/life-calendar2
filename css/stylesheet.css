@@ -354,7 +354,11 @@ main {
 }
 
 .submit:hover, .Font:hover {
-    background-color: #bcbcbc;
+    background-color: #d3d3d3;
+}
+
+.submit:active, .Font:active {
+    background-color: #9e9e9e;
 }
 
 

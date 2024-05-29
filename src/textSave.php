@@ -1,6 +1,6 @@
 <?php
 
-// 각 날짜의 색깔 및 정보를 데이터베이스에 저장하는 코드
+// 메모장 텍스트 저장하는 코드
 
 session_start();
 require 'config.php';
@@ -9,7 +9,7 @@ require 'config.php';
 $user_id = $_SESSION['user_id'];
 
 // 기존 데이터 가져오기 준비
-$sql_select = "SELECT colordata FROM member WHERE id = ?";
+$sql_select = "SELECT memodata FROM member WHERE id = ?";
 $stmt_select = mysqli_prepare($con, $sql_select);
 
 // 바인딩 및 실행
@@ -26,21 +26,21 @@ if (!$result_select) {
 $result_set = mysqli_stmt_get_result($stmt_select);
 $row = mysqli_fetch_assoc($result_set);
 
-// colordata 값이 NULL인 경우 초기 값을 []로 설정
-$existing_colordata = $row['colordata'] ? json_decode($row['colordata'], true) : [];
+// memodata 값이 NULL인 경우 초기 값을 []로 설정
+$existing_data = $row['memodata'] ? json_decode($row['memodata'], true) : [];
 
 // 새로운 데이터 가져오기
 $inputData = file_get_contents("php://input");
-$new_colordata = isset($inputData) ? json_decode($inputData, true) : [];
+$new_data = isset($inputData) ? json_decode($inputData, true) : [];
 
 // 새로운 데이터의 키와 값으로 기존 데이터 병합
-$combined_colordata = array_merge($existing_colordata, $new_colordata);
+$combined_data = array_merge($existing_data, $new_data);
 
 // 중복된 키를 덮어쓰기 위해 빈 배열 사용
 $uniqueData = [];
 
 // 배열을 순회하며 키에 해당하는 값 덮어쓰기
-foreach ($combined_colordata as $item) {
+foreach ($combined_data as $item) {
     foreach ($item as $key => $value) {
         $uniqueData[$key] = $value;
     }
@@ -53,8 +53,8 @@ foreach ($uniqueData as $key => $value) {
 }
 
 
-// colordata 업데이트
-$sql_update = "UPDATE member SET colordata = ? WHERE id = ?";
+// 업데이트
+$sql_update = "UPDATE member SET memodata = ? WHERE id = ?";
 $stmt_update = mysqli_prepare($con, $sql_update);
 
 if (!$stmt_update) {
@@ -64,7 +64,7 @@ if (!$stmt_update) {
 }
 
 // JSON 형식으로 변환하여 바인딩 및 실행
-$json_combined_colordata = json_encode($filteredDataArray);
+$json_combined_colordata = json_encode($filteredDataArray, JSON_UNESCAPED_UNICODE);
 mysqli_stmt_bind_param($stmt_update, "ss", $json_combined_colordata, $user_id);
 $result_update = mysqli_stmt_execute($stmt_update);
 

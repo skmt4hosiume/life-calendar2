@@ -75,7 +75,7 @@ function appendSelected() {
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
-            
+
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
             const selectedDate = `${monthName} ${selectedDay.textContent}일`;
@@ -301,8 +301,37 @@ function saveTextButton() {
 
     saveButton.addEventListener('click', () => {
         const note = memoTextarea.value;
-        localStorage.setItem(selectedDay.textContent, note)
+        localStorage.setItem(convertDateFormat(selectedDay.textContent), note)
+
+        saveTextData(convertDateFormat(selectedDay.textContent), note);
     })
+}
+
+function convertDateFormat(dateString) {
+    const regex = /(\d{1,2})월 (\d{1,2})일/;
+    const match = dateString.match(regex);
+    const month = match[1];
+    const day = match[2];
+    return `${month}-${day}`;
+}
+
+function saveTextData(key, value) {
+    const data = [{ [key]: value }]
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", 'src/textSave.php', true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(data));
+
+    //이 부분은 콘솔, 디버깅 용도
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) { //xhr.status = 200 : 요청이 성공적으로 처리되면 200값을 가짐 
+                console.log(xhr.responseText);
+            } else {
+                console.log("음..? 보내졌나?");
+            }
+        }
+    }
 }
 
 function dayClickEvent() {
@@ -313,18 +342,18 @@ function dayClickEvent() {
             if (day.classList.contains('selected')) {
                 const memoTextarea = document.querySelector('.input');
                 const selectedDay = document.getElementById('select-day');
-                const savedNote = localStorage.getItem(selectedDay.textContent)
-                
+                const savedNote = localStorage.getItem(convertDateFormat(selectedDay.textContent))
+
                 memoTextarea.value = savedNote;
             }
         })
     })
 }
 
-function changeFont(){
+function changeFont() {
     const textarea = document.querySelector('.input');
     const changefontbutton = document.getElementById('fontbutton');
-    
+
     changefontbutton.addEventListener('click', () => {
         const selectedFont = fontchange.value;
         textarea.style.fontFamily = selectedFont;
@@ -339,7 +368,7 @@ function changeTheme() {
     const monthNameAll = document.querySelectorAll('.month-name');
     const daysContainerAll = document.querySelectorAll('.days-container')
     const themeOptionAll = document.querySelectorAll('.theme-option');
-    
+
     if (!localStorage.getItem("theme")) {
         localStorage.setItem("theme", window.getComputedStyle(header).backgroundColor);
     }
@@ -347,14 +376,14 @@ function changeTheme() {
     const themeValue = localStorage.getItem("theme");
     const colorString = rgbToHex(themeValue);
     const colorAlpha = themeCalc(colorString, 0.8);
-    
+
     firstStartTheme(themeValue, colorAlpha);
 
     themeOptionAll.forEach(themeOption => {
         themeOption.addEventListener('click', () => {
             const themeColor = window.getComputedStyle(themeOption).backgroundColor;
             localStorage.setItem("theme", themeColor);
-            
+
             const colorString = rgbToHex(themeColor);
             const colorAlpha = themeCalc(colorString, 0.85);
 
@@ -403,7 +432,8 @@ function AJAXRequest() {
             var response = JSON.parse(xhr.responseText);
             if (response.logged_in) {
                 document.getElementById('logout-item').style.display = 'inline';
-                loadInfomation();
+                loadColorInfomation();
+                loadTextInformation();
             } else {
                 document.getElementById('login-item').style.display = 'inline';
                 document.getElementById('register-item').style.display = 'inline';
@@ -453,7 +483,7 @@ function dayColorSave() {
 }
 
 // 페이지 열때 정보 불러오기 
-function loadInfomation() {
+function loadColorInfomation() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'src/get_colordata.php', true); //get_colordata.php를 이용해 데이터 불러오기
     xhr.onload = function () {
@@ -464,6 +494,27 @@ function loadInfomation() {
         }
     };
     xhr.send();
+}
+
+function loadTextInformation() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'src/get_textdata.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200 && xhr.responseText !== "") {
+            var textdata = JSON.parse(xhr.responseText);
+            loadDayText(textdata);
+        }
+    };
+    xhr.send();
+}
+
+function loadDayText(textdata) {
+    textdata.forEach(element => {
+        for (const key in element) {
+            console.log(key, element[key]);
+            localStorage.setItem(key, element[key]);
+        }
+    })
 }
 
 // 파라미터로 받은 값을 이용해 날짜에 정보 반영
@@ -485,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green"); // 초기값은 green
     updateTime();
     setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); 
+    generateDaysForMonth(new Date().getFullYear());
     appendSelected();
     colorPickerEvent();
     colorShadowEvent();

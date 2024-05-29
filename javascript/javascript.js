@@ -225,12 +225,20 @@ function rgbToHex(rgbString) {
 
 // 사이드바 색깔 선택 이벤트 함수
 function colorPickerEvent() {
+    if (!localStorage.getItem("selectedColor")) {
+        localStorage.setItem("selectedColor", "green");
+    }
+
+    const currentColor = localStorage.getItem("selectedColor");
+    setSelectedColor(currentColor);
+    setShadowColor(currentColor);
 
     // 각 색상 옵션을 클릭했을 때의 동작
     const colorOptions = document.querySelectorAll('.color-option');
     colorOptions.forEach(option => {
         option.addEventListener('click', () => {
             const color = option.id;
+            localStorage.setItem("selectedColor", color);
             setSelectedColor(color);
             setShadowColor(color);
             colorEffect(color);

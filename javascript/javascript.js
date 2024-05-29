@@ -168,6 +168,17 @@ function shadeCalc(color, alpha) {
     return `rgb(${Math.round(rgb.r * alpha)}, ${Math.round(rgb.g * alpha)}, ${Math.round(rgb.b * alpha)})`
 }
 
+function themeCalc(color, alpha) {
+    // 16진수 코드에서 #을 제거
+    hex = color.replace('#', '');
+
+    // RGB 값을 추출
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return `rgb(${Math.round(r * alpha)}, ${Math.round(g * alpha)}, ${Math.round(b * alpha)})`
+}
+
 function setShadowColor(color) {
     // 각 명암 요소에 색상 적용
     document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1.1);
@@ -179,6 +190,7 @@ function setShadowColor(color) {
 
 function hexToRgb(hex) {
     // hex 코드가 '#' 문자로 시작하는지 확인
+
     hex = hex.replace(/^#/, '');
 
     // hex 코드의 유효성을 확인하고, 3자리 코드를 6자리로 확장
@@ -191,6 +203,24 @@ function hexToRgb(hex) {
     const b = parseInt(hex.substring(4, 6), 16);
 
     return { r, g, b };
+}
+
+function rgbToHex(rgbString) {
+    // 문자열에서 숫자 부분만 추출
+    const rgbArray = rgbString.match(/\d+/g);
+
+    // 각 값을 10진수 숫자로 변환
+    const r = parseInt(rgbArray[0], 10);
+    const g = parseInt(rgbArray[1], 10);
+    const b = parseInt(rgbArray[2], 10);
+
+    // 각 값을 16진수로 변환하고 두 자리로 맞추기 위해 padStart를 사용
+    const hexR = r.toString(16).padStart(2, '0');
+    const hexG = g.toString(16).padStart(2, '0');
+    const hexB = b.toString(16).padStart(2, '0');
+
+    // 최종 16진수 색상 코드를 반환
+    return `#${hexR}${hexG}${hexB}`;
 }
 
 // 사이드바 색깔 선택 이벤트 함수
@@ -299,21 +329,27 @@ function changeTheme() {
     const sidebar = document.querySelector('.sidebar');
     const footer = document.querySelector('.footer');
     const monthNameAll = document.querySelectorAll('.month-name');
+    const daysContainerAll = document.querySelectorAll('.days-container')
     const themeOptionAll = document.querySelectorAll('.theme-option');
     
-    const themeValue = localStorage.getItem("theme");
-
-    if (!themeValue) {
+    if (!localStorage.getItem("theme")) {
         localStorage.setItem("theme", window.getComputedStyle(header).backgroundColor);
     }
+
+    const themeValue = localStorage.getItem("theme");
+    const colorString = rgbToHex(themeValue);
+    const colorAlpha = themeCalc(colorString, 0.8);
     
-    firstStartTheme(localStorage.getItem("theme"));
+    firstStartTheme(themeValue, colorAlpha);
 
     themeOptionAll.forEach(themeOption => {
         themeOption.addEventListener('click', () => {
             const themeColor = window.getComputedStyle(themeOption).backgroundColor;
             localStorage.setItem("theme", themeColor);
             
+            const colorString = rgbToHex(themeColor);
+            const colorAlpha = themeCalc(colorString, 0.85);
+
             header.style.backgroundColor = themeColor;
             sidebar.style.backgroundColor = themeColor;
             footer.style.backgroundColor = themeColor;
@@ -321,16 +357,20 @@ function changeTheme() {
                 monthName.style.backgroundColor = themeColor;
             })
 
+            daysContainerAll.forEach(dayContainer => {
+                dayContainer.style.backgroundColor = colorAlpha;
+            });
         })
     })
 }
 
 // 저장된 테마 색깔을 최소 한번 적용하는걸 실행시키는 함수
-function firstStartTheme(color) {
+function firstStartTheme(color, colorAlpha) {
     const header = document.querySelector('.header');
     const sidebar = document.querySelector('.sidebar');
     const footer = document.querySelector('.footer');
     const monthNameAll = document.querySelectorAll('.month-name');
+    const daysContainerAll = document.querySelectorAll('.days-container');
 
     header.style.backgroundColor = color;
     sidebar.style.backgroundColor = color;
@@ -338,6 +378,10 @@ function firstStartTheme(color) {
     monthNameAll.forEach(monthName => {
         monthName.style.backgroundColor = color;
     })
+
+    daysContainerAll.forEach(dayContainer => {
+        dayContainer.style.backgroundColor = colorAlpha;
+    });
 }
 
 

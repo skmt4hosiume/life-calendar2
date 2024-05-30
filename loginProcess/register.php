@@ -52,7 +52,7 @@
 
             <label for="password">비밀번호 확인</label>
             <input type="password" id="password" name="password2" required>
-            <a href="login.html">이미 회원이신가요?</a>
+            <a href="login.php">이미 회원이신가요?</a>
             <button type="submit">회원가입</button>
         </form>
     </div>

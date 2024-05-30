@@ -43,8 +43,8 @@
             
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" required>
-            <a href="register.php">회원정보가 없으신가요?</a>
-            <a href="newpassword.php">비밀번호를 까먹으셨나요?</a>
+            <a href="register.html">회원정보가 없으신가요?</a>
+            <a href="newpassword.html">비밀번호를 까먹으셨나요?</a>
             <button type="submit">로그인</button>
         </form>
     </div>

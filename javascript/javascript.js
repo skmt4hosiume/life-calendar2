@@ -529,7 +529,39 @@ function loadDayColor(colordata) {
         }
     })
 }
+const translations = {
+    en: {
+        login: "Sign in",
+        logout: "Sign out",
+        sign_up: "Create account",
+        select_date: "Select a date",
+        current_color: "Current color",
+        Delete_color : "Delete color",
+        memo: "Memo",
+        save: "Save",
+        font: "Change font",
+        theme_color : "theme color"
+    },
+    ko: {
+        Login: "로그인",
+        logout: "로그아웃",
+        sign_up: "회원가입",
+        select_date:"날짜 선택",
+        current_color:"현재 색깔",
+        Delete_color : "색칠 삭제",
+        memo : "메모",
+        save: "저장",
+        font: "폰트변경",
+        theme_color : "테마 색깔"
+    }
+};
 
+function switchLanguage(lang) {
+    document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        element.textContent = translations[lang][key];
+    });
+}
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {

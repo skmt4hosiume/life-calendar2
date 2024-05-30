@@ -32,24 +32,28 @@
                     <a href="about.html">ABOUT</a>
                 </li>
                 <li id="login-item" style="display: none;">
-                    <a href="loginProcess/login.php">로그인</a>
+                    <a data-key="Login" href="loginProcess/login.php">로그인</a>
                 </li>
                 <li id="register-item" style="display: none;">
-                    <a href="loginProcess/register.php">회원가입</a>
+                    <a data-key="Sign_up" href="loginProcess/register.php">회원가입</a>
                 </li>
                 <li id="logout-item" style="display: none;">
-                    <a href="src/logout_server.php">로그아웃</a>
+                    <a data-key="logout" href="src/logout_server.php">로그아웃</a>
                 </li>
             </ul>
+            <div id="language-selector">
+                <button onclick="switchLanguage('en')">English</button>
+                <button onclick="switchLanguage('ko')">Korean</button>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <sidebar class="sidebar">
-            <div id="select-day">날짜 선택</div>
+            <div data-key="select_date" id="select-day">날짜 선택</div>
             <div class="color-container">
                 <div class="select-color-container">
-                    <div class="text">현재 색깔 : </div>
+                    <div data-key="current_color" class="text">현재 색깔 : </div>
                     <div class="selected-color"></div>
                 </div>
 
@@ -71,15 +75,15 @@
                     <div class="shadow-option" id="shadow-40"></div>
                     <div class="shadow-option" id="shadow-30"></div>
                 </div>
-                <button id="reset-color" class="reset-button">색칠 삭제</button>    
+                <button data-key="Delete_color" id="reset-color" class="reset-button">색칠 삭제</button>    
 
 
                 <div name="memo">
-                    <textarea class="input" rows="10" cols="10" placeholder="메모"></textarea>
-                    <button class="submit", id="textbutton">저장</button>
+                    <textarea data-key="memo" class="input" rows="10" cols="10" placeholder="메모"></textarea>
+                    <button data-key="save" class="submit", id="textbutton">저장</button>
 
                     
-                    <button class = "Font", id = fontbutton>폰트변경</button>
+                    <button data-key="font" class = "Font", id = fontbutton>폰트변경</button>
                     <select class ="fontSelect" id = "fontchange">
                         <option value="굴림체">굴림체</option>
                         <option value="나눔고딕">나눔고딕</option>
@@ -92,7 +96,7 @@
 
             <div class="theme-container">
                 <div class="select-theme-container">
-                    <div class="text">테마 색깔</div>
+                    <div data-key="theme_color" class="text">테마 색깔</div>
                     <div class="selected-theme-color"></div>
                 </div>
             

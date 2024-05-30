@@ -84,21 +84,43 @@ function appendSelected() {
     });
 }
 
+const languageData = {
+    en: {
+        am: 'AM',
+        pm: 'PM',
+        daysOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dateFormat: (ampm, hours, minutes, seconds, year, month, date, dayOfWeek) =>
+            `${ampm} ${hours}:${minutes}:${seconds} | ${year}-${month}-${date} ${dayOfWeek}`
+    },
+    ko: {
+        am: '오전',
+        pm: '오후',
+        daysOfWeek: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+        dateFormat: (ampm, hours, minutes, seconds, year, month, date, dayOfWeek) =>
+            `${ampm} ${hours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일 ${dayOfWeek}`
+    }
+};
+
+let currentLanguage = 'ko';
+
+
+
 function updateTime() {
     const now = new Date();
     const hours = now.getHours();
     const year = now.getFullYear();
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const date = now.getDate().toString().padStart(2, '0');
-    const ampm = hours >= 12 ? '오후' : '오전';
+    const ampm = hours >= 12 ? languageData[currentLanguage].pm : languageData[currentLanguage].am;
     const formattedHours = (hours % 12) || 12;
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const seconds = now.getSeconds().toString().padStart(2, '0');
+    const dayOfWeek = languageData[currentLanguage].daysOfWeek[now.getDay()];
 
-    const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-    const dayOfWeek = daysOfWeek[now.getDay()];
+    const timeString = languageData[currentLanguage].dateFormat(
+        ampm, formattedHours, minutes, seconds, year, month, date, dayOfWeek
+    );
 
-    const timeString = `${ampm} ${formattedHours}:${minutes}:${seconds} | ${year}년 ${month}월 ${date}일 ${dayOfWeek}`;
     document.querySelector('.indicator-date').innerText = timeString;
 }
 
@@ -547,7 +569,7 @@ const translations = {
         logout: "로그아웃",
         sign_up: "회원가입",
         select_date:"날짜 선택",
-        current_color:"현재 색깔",
+        current_color:"현재 색깔 :",
         Delete_color : "색칠 삭제",
         memo : "메모",
         save: "저장",
@@ -556,11 +578,21 @@ const translations = {
     }
 };
 
-function switchLanguage(lang) {
+function updateText() {
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
-        element.textContent = translations[lang][key];
+        element.textContent = translations[currentLanguage][key];
     });
+}
+
+function switchLanguage(lang) {
+    if (!translations[lang]) {
+        console.error(`No translations available for language: ${lang}`);
+        return;
+    }
+    currentLanguage = lang;
+    updateTime(); // 시간 업데이트
+    updateText(); // 텍스트 업데이트
 }
 
 // 함수 실행 부분들
